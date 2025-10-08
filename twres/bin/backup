@@ -68,9 +68,9 @@ main_reboot_menu() {
                 
                 echo "Executing: $command"
                 $command
-                
-                echo "Command returned without system change. Waiting 2 seconds..."
-                sleep 2
+
+                echo "Press any key to return to the menu..."
+                read -n 1 wait_key
                 ;;
             q)
                 break
