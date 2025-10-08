@@ -1,0 +1,20 @@
+# PARTITION TARGETS
+# The file manager script will read these paths and only display those
+# that physically exist on the device (using Bash's -e check).
+
+# == Standard Block Partitions ==
+/dev/block/by-name/boot
+/dev/block/by-name/recovery
+/dev/block/by-name/system
+/dev/block/by-name/vendor
+/dev/block/by-name/dtbo
+/dev/block/by-name/super
+/dev/block/by-name/up_param
+/dev/block/by-name/vendor_boot
+
+# == Dynamic Mapper Partitions (for A/B or Virtual AB) ==
+/dev/block/mapper/system
+/dev/block/mapper/vendor
+/dev/block/mapper/odm
+/dev/block/mapper/product
+/dev/block/mapper/system_ext

@@ -1,0 +1,270 @@
+#!/bin/bash
+readonly VIEW_HEIGHT=21
+
+readonly PARTITION_CONFIG_FILE="/twres/partition.txt" 
+
+_items=()
+_selected_index=0
+_page_start_index=0
+stty_orig=$(stty -g)
+
+
+flash_image_command() {
+    local image_path="$1"
+    local target_block="$2"
+    
+    printf "flashing block with img"
+    dd if="$image_path" of="$target_block"
+}
+
+handle_img_flash() {
+  local image_path="$1"
+  local _flash_selected_index=0
+  local _all_possible_targets=()
+  local _available_targets=()
+  local target_count=0
+  
+  if [[ -f "$PARTITION_CONFIG_FILE" ]]; then
+    
+    while IFS= read -r target_line; do
+      _all_possible_targets+=("$target_line")
+    done < "$PARTITION_CONFIG_FILE"
+    
+  else
+    printf "\033c"
+    printf " ERROR \n"
+    printf "Partition config file not found: %s\n" "$PARTITION_CONFIG_FILE"
+    printf "\n Press any key to return to the file manager \n"
+    stty -echo -icanon
+    read -n 1 wait_key
+    stty "$stty_orig"
+    return 0
+  fi
+  
+  for target in "${_all_possible_targets[@]}"; do
+    local trimmed_target=$(echo "$target" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+    
+    if [[ -n "$trimmed_target" ]] && [[ ! "$trimmed_target" =~ ^# ]]; then 
+        if [[ -e "$trimmed_target" ]]; then
+            _available_targets+=("$trimmed_target")
+        fi
+    fi
+  done
+
+  target_count="${#_available_targets[@]}"
+  
+  if [ "$target_count" -eq 0 ]; then
+    printf "\033c"
+    printf " NO FLASH TARGETS FOUND \n"
+    printf "No existing partitions were found listed in %s.\n" "$PARTITION_CONFIG_FILE"
+    printf "\n Press any key to return to the file manager \n"
+    stty -echo -icanon
+    read -n 1 wait_key
+    stty "$stty_orig"
+    return 0
+  fi
+
+  while true; do
+    printf "\033c"
+    printf "_FLASH IMAGE MENU \n"
+    printf "Image: %s\n" "$image_path"
+    
+    printf "Select block to flash (Only existing blocks are shown):\n"
+
+    for i in "${!_available_targets[@]}"; do
+      target="${_available_targets[i]}"
+      if [[ "$i" -eq "$_flash_selected_index" ]]; then
+        printf "> %s\n" "$target"
+      else
+        printf "  %s\n" "$target"
+      fi
+    done
+    
+    local lines_printed="${#_available_targets[@]}"
+    for (( j = lines_printed; j < VIEW_HEIGHT; j++ )); do
+      echo
+    done
+
+    
+    printf "[vol+] Up | [vol-] Down | [power] Flash | [power+vol-] Quit\n"
+
+    stty -echo -icanon
+    read -n 1 flash_key
+    stty "$stty_orig"
+
+    case "$flash_key" in
+      j) 
+        if [ "$_flash_selected_index" -lt "$((target_count - 1))" ]; then
+          _flash_selected_index=$((_flash_selected_index + 1))
+        fi
+        ;;
+      k) 
+        if [ "$_flash_selected_index" -gt 0 ]; then
+          _flash_selected_index=$((_flash_selected_index - 1))
+        fi
+        ;;
+      l | $'\r' | $'\n')
+        local selected_target="${_available_targets[_flash_selected_index]}"
+        
+        printf "\033c"
+        printf " Executing Image Flash \n"
+        printf "Flashing %s to %s...\n" "$image_path" "$selected_target"
+
+        flash_image_command "$image_path" "$selected_target"
+        
+        printf "\n Press any key to return to the file manager \n"
+        
+        stty -echo -icanon
+        read -n 1 wait_key
+        stty "$stty_orig" 
+        return 0
+        ;;
+      q)
+      exit
+      ;;
+    esac
+  done
+}
+
+get_items() {
+  _items=("..") 
+
+  shopt -s nullglob
+  
+  for item in * .[!.]* ..?*; do
+    [ -e "$item" ] || [ -L "$item" ] || continue
+    if [[ "$item" == "." ]] || [[ "$item" == ".." ]]; then
+        continue
+    fi
+
+    if [[ -d "$item" ]]; then
+      _items+=("${item}/")
+    else
+      _items+=("$item")
+    fi
+  done
+  
+  shopt -u nullglob
+}
+
+draw_ui() {
+  printf "\033c"
+
+  item_count="${#_items[@]}"
+  
+  current_page=$(( (_page_start_index / VIEW_HEIGHT) + 1 ))
+  total_pages=$(( (item_count + VIEW_HEIGHT - 1) / VIEW_HEIGHT ))
+  if [ "$item_count" -eq 0 ]; then total_pages=1; fi
+
+  printf "_Flash File Manager | Location: %s | Page %s of %s\n" "$(pwd)" "$current_page" "$total_pages"
+  
+
+  end_index=$((_page_start_index + VIEW_HEIGHT - 1))
+  
+  for (( i = _page_start_index; i < item_count && i <= end_index; i++ )); do
+    item="${_items[i]}"
+    
+    if [[ "$i" -eq "$_selected_index" ]]; then
+      printf "> %s\n" "$item"
+    else
+      printf "  %s\n" "$item"
+    fi
+  done
+
+  lines_printed=$((i - _page_start_index))
+  for (( j = lines_printed; j < VIEW_HEIGHT; j++ )); do
+    echo
+  done
+
+  
+  printf "[vol+] Up | [vol-] Down | [power] Open/Flash | [power+vol-] Quit\n"
+}
+
+trap 'stty "$stty_orig"; printf "\033c"' EXIT INT TERM
+
+while true; do
+  get_items
+  draw_ui
+  
+  stty -echo -icanon
+  read -n 1 key
+  stty "$stty_orig"
+
+  item_count="${#_items[@]}"
+
+  case "$key" in
+    j)
+      if [ "$_selected_index" -lt "$((item_count - 1))" ]; then
+        _selected_index=$((_selected_index + 1))
+      fi
+      if [ "$_selected_index" -ge "$((_page_start_index + VIEW_HEIGHT))" ]; then
+        _page_start_index=$((_page_start_index + 1))
+      fi
+      ;;
+    k)
+      if [ "$_selected_index" -gt 0 ]; then
+        _selected_index=$((_selected_index - 1))
+      fi
+      if [ "$_selected_index" -lt "$_page_start_index" ]; then
+        _page_start_index=$((_page_start_index - 1))
+      fi
+      ;;
+
+    ' ')
+      next_start=$((_page_start_index + VIEW_HEIGHT))
+      if [ "$next_start" -lt "$item_count" ]; then
+        _page_start_index="$next_start"
+        _selected_index=$((_page_start_index))
+        if [ "$_selected_index" -ge "$item_count" ]; then
+            _selected_index=$((item_count - 1))
+        fi
+      fi
+      ;;
+    b)
+      if [ "$_page_start_index" -gt 0 ]; then
+        _page_start_index=$((_page_start_index - VIEW_HEIGHT))
+        if [ "$_page_start_index" -lt 0 ]; then 
+            _page_start_index=0
+        fi
+        _selected_index=$((_page_start_index))
+      fi
+      ;;
+
+    h)
+      cd .. || exit 1
+      _selected_index=0
+      _page_start_index=0
+      ;;
+    l | $'\r' | $'\n')
+      selected_item_raw="${_items[_selected_index]}"
+      selected_item="${selected_item_raw%/}" 
+      full_path="$(pwd)/$selected_item" 
+
+      if [[ "$selected_item" == *.img ]] && [[ -f "$selected_item" ]]; then
+        handle_img_flash "$full_path"
+
+      elif [[ "$selected_item" == *.zip ]] && [[ -f "$selected_item" ]]; then
+        
+        printf "\033c" 
+        printf " Executing TWRP Install \n"
+        printf "Command: twrp install \"%s\"\n" "$full_path"
+        
+        twrp install "$full_path"
+        
+        printf "\n Press any key to return to the file manager \n"
+        
+        stty -echo -icanon
+        read -n 1 wait_key
+        stty "$stty_orig"
+      
+      elif [[ -d "$selected_item" ]]; then
+        cd "$selected_item" || exit 1
+        _selected_index=0 
+        _page_start_index=0
+      fi
+      ;;
+    q)
+      exit
+      ;;
+  esac
+done

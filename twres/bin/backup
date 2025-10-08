@@ -1,0 +1,84 @@
+#!/bin/bash
+readonly VIEW_HEIGHT=18
+
+stty_orig="$(stty -g)"
+trap 'stty "$stty_orig"; printf "\033c"' EXIT INT TERM
+
+readonly PARTITION_MENU_OPTIONS=(
+    "Backup Data" "twrp backup D NDATA"
+    "Backup System" "twrp backup S NSYSTEM"
+    "Backup Boot" "twrp backup B NBOOT"
+    "Restore Data" "twrp restore D NDATA"
+    "Restore System" "twrp restore S NSYSTEM"
+    "Restore Boot" "twrp restore B NBOOT"
+)
+readonly OPTION_COUNT=$(( ${#PARTITION_MENU_OPTIONS[@]} / 2 ))
+
+main_reboot_menu() {
+    
+    local selected_index=0
+    
+    while true; do
+        printf "\033c"
+        printf "_BACKUP & RESTORE\n"
+        printf "=================================\n"
+        printf "Select action to perform:\n"
+
+        for ((i=0; i < OPTION_COUNT; i++)); do
+            local display_name="${PARTITION_MENU_OPTIONS[i*2]}"
+            if [[ "$i" -eq "$selected_index" ]]; then
+                printf "> \033[7m%s\033[0m\n" "$display_name"
+            else
+                printf "  %s\n" "$display_name"
+            fi
+        done
+        
+        local lines_printed="$OPTION_COUNT"
+        for (( j = lines_printed; j < VIEW_HEIGHT; j++ )); do
+            echo
+        done
+
+        printf "=================================\n"
+        printf "[vol+] Up | [vol-] Down | [power] Select | [power+vol-] Quit\n"
+
+        stty -echo -icanon
+        read -n 1 menu_key
+        stty "$stty_orig"
+
+        case "$menu_key" in
+            j)
+                if [ "$selected_index" -lt "$((OPTION_COUNT - 1))" ]; then
+                    selected_index=$((selected_index + 1))
+                fi
+                ;;
+            k)
+                if [ "$selected_index" -gt 0 ]; then
+                    selected_index=$((selected_index - 1))
+                fi
+                ;;
+            l | $'\r' | $'\n')
+                local command="${PARTITION_MENU_OPTIONS[selected_index*2 + 1]}"
+                
+                printf "\033c"
+                
+                if [ "$command" = "exit" ]; then
+                    echo "Exiting menu."
+                    exit 0
+                fi
+                
+                echo "Executing: $command"
+                $command
+                
+                echo "Command returned without system change. Waiting 2 seconds..."
+                sleep 2
+                ;;
+            q)
+                break
+                ;;
+        esac
+    done
+}
+
+main_reboot_menu
+
+exit 0
