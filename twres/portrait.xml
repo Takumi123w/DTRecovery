@@ -441,7 +441,7 @@
 			
 			<action>
 				<touch key="voldown"/>
-				<action function="page">rbmenu</action>
+				<action function="page">bkpmenu</action>
 			</action>
 			
 			<action>
@@ -453,96 +453,7 @@
             </action>
 		</page>
 		
-		<page name="rbmenu">
-			<template name="page"/>
-			
-			<image>
-				<image resource="splashteamwin"/>
-				<placement x="82" y="30"/>
-			</image>
-
-			<text style="text_m">
-				<condition var1="tw_no_cpu_temp" var2="0"/>
-				<placement x="%col1_x_header%" y="%row4_header_y%"/>
-				<text>By TakuruKagami</text>
-			</text>
-			
-			<text style="text_m">
-				<condition var1="tw_no_cpu_temp" var2="0"/>
-				<placement x="%col1_x_header%" y="%row4_header_y1%"/>
-				<text>Based version: %tw_version%</text>
-			</text>
-
-			<button style="main_button">
-				<placement x="%indent%" y="%row2a_y%"/>
-				<text>Install</text>
-		<actions>
-		<action function="editfile">bash "/twres/bin/file_manager"</action>
-		<action function="page">terminalcommand</action>
-		</actions>
-			</button>
-
-			<button style="main_button">
-				<placement x="%center_x%" y="%row2a_y%"/>
-				<text>Format Drive</text>
-				<actions>
-		<action function="editfile">bash "/twres/bin/wipe"</action>
-		<action function="page">terminalcommand</action>
-		</actions>
-			</button>
-			
-			<button style="main_button">
-				<placement x="%indent%" y="%row8_y%"/>
-				<text>Mount</text>
-				<actions>
-		<action function="editfile">bash "/twres/bin/mountp"</action>
-		<action function="page">terminalcommand</action>
-		</actions>
-			</button>
-			
-			<button>
-				<image resource="main_button2"/>
-				<placement x="%indent%" y="%row13a_y%"/>
-				<text>Reboot</text>
-				<actions>
-		<action function="editfile">bash "/twres/bin/reboot"</action>
-		<action function="page">terminalcommand</action>
-		</actions>
-			</button>
-			
-			<button style="main_button">
-				<placement x="%center_x%" y="%row8_y%"/>
-				<text>Backup</text>
-				<actions>
-		<action function="editfile">bash "/twres/bin/backup"</action>
-		<action function="page">terminalcommand</action>
-		</actions>
-			</button>
-			
-			<text color="%text_color%">
-				<font resource="font_m"/>
-				<placement x="%indent%" y="%row13a_y%"/>
-				<text>Reboot</text>
-			</text>
-			
-			<action>
-				<touch key="volup"/>
-				<action function="page">mtpmenu</action>
-			</action>
-			
-			<action>
-				<touch key="voldown"/>
-				<action function="page">bkpmenu</action>
-			</action>
-			
-			<action>
-				<touch key="power"/>
-				<actions>
-		<action function="editfile">bash "/twres/bin/reboot"</action>
-		<action function="page">terminalcommand</action>
-		</actions>
-            </action>
-		</page>
+		
 		
 		<page name="bkpmenu">
 			<template name="page"/>
@@ -618,12 +529,12 @@
 			
 			<action>
 				<touch key="volup"/>
-				<action function="page">rbmenu</action>
+				<action function="page">mtpmenu</action>
 			</action>
 			
 			<action>
 				<touch key="voldown"/>
-				<action function="page">main2</action>
+				<action function="page">rbmenu</action>
 			</action>
 			
 			<action>
@@ -635,6 +546,98 @@
             </action>
 		</page>
 
+# rbmenu
+				
+		<page name="rbmenu">
+			<template name="page"/>
+			
+			<image>
+				<image resource="splashteamwin"/>
+				<placement x="82" y="30"/>
+			</image>
+
+			<text style="text_m">
+				<condition var1="tw_no_cpu_temp" var2="0"/>
+				<placement x="%col1_x_header%" y="%row4_header_y%"/>
+				<text>By TakuruKagami</text>
+			</text>
+			
+			<text style="text_m">
+				<condition var1="tw_no_cpu_temp" var2="0"/>
+				<placement x="%col1_x_header%" y="%row4_header_y1%"/>
+				<text>Based version: %tw_version%</text>
+			</text>
+
+			<button style="main_button">
+				<placement x="%indent%" y="%row2a_y%"/>
+				<text>Install</text>
+		<actions>
+		<action function="editfile">bash "/twres/bin/file_manager"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+
+			<button style="main_button">
+				<placement x="%center_x%" y="%row2a_y%"/>
+				<text>Format Drive</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/wipe"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%indent%" y="%row8_y%"/>
+				<text>Mount</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/mountp"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button>
+				<image resource="main_button2"/>
+				<placement x="%indent%" y="%row13a_y%"/>
+				<text>Reboot</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/reboot"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row8_y%"/>
+				<text>Backup</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/backup"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<text color="%text_color%">
+				<font resource="font_m"/>
+				<placement x="%indent%" y="%row13a_y%"/>
+				<text>Reboot</text>
+			</text>
+			
+			<action>
+				<touch key="volup"/>
+				<action function="page">bkpmenu</action>
+			</action>
+			
+			<action>
+				<touch key="voldown"/>
+				<action function="page">main2</action>
+			</action>
+			
+			<action>
+				<touch key="power"/>
+				<actions>
+		<action function="editfile">bash "/twres/bin/reboot"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+            </action>
+		</page>
 				
 		<page name="Colortwrp">
 			<template name="page"/>
