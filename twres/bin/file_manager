@@ -1,5 +1,4 @@
 #!/bin/bash
-readonly VIEW_HEIGHT=21
 
 readonly PARTITION_CONFIG_FILE="/twres/partition.txt" 
 
@@ -7,6 +6,9 @@ _items=()
 _selected_index=0
 _page_start_index=0
 stty_orig=$(stty -g)
+terminal_height=$(stty size | cut -d ' ' -f 1)
+readonly VIEW_HEIGHT=$((terminal_height - 6))
+
 
 
 flash_image_command() {
