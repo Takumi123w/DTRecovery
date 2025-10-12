@@ -8,7 +8,7 @@ TWRP theme for phone dont have touch driver
 - Unpack AIK ZIP to folder and enter the folder
 - Paste Your twrp/recovery.img to AIK folder and press unpackimg.bat
 - After that ramdisk folder will appear
-- Unpack and paste and replace twres from DTRecovery ZIP to ramdisk folder
+- Unpack and paste replace twres from DTRecovery ZIP to ramdisk folder
 - After that press repackimg.bat
 - then image-new will appear that is new file recovery.img that already patched with DTRecovery theme
 - Flash it and Done now its support HW Keys
