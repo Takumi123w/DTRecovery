@@ -12,19 +12,30 @@
 		<font name="font_l" filename="RobotoCondensed-Regular.ttf" size="24"/>
 		<image name="splashlogo" filename="splashlogo" retainaspect="1"/>
 		<image name="splashteamwin" filename="splashteamwin" retainaspect="1"/>
+		<image name="background" filename="background" retainaspect="1"/>
 	</resources>
 
 	<variables>
 		<variable name="screen_width" value="480"/>
 		<variable name="screen_height" value="800"/>
 		<variable name="background_color" value="#222222"/>
-		<variable name="header_color" value="#B90E0A"/>
+		<variable name="header_color" value="#B90E0ACC"/>
+		<variable name="headerx_color" value="#0047AB99"/>
 		<variable name="accent_color" value="#DC3545"/>
 	</variables>
 
 	<pages>
 		<page name="splash">
-			<background color="%background_color%"/>
+			<background color="#1A1A1A"/>
+			
+			<image>
+				<image resource="background"/>
+				<placement x="240" y="407" placement="4"/>
+			</image>
+			
+			<fill color="%headerx_color%">
+				<placement x="0" y="200" w="%screen_width%" h="600"/>
+			</fill>
 
 			<fill color="%header_color%">
 				<placement x="0" y="0" w="%screen_width%" h="200"/>

@@ -36,6 +36,7 @@
 		<image name="file" filename="file" retainaspect="1"/>
 		<image name="folder" filename="folder" retainaspect="1"/>
 		<image name="unlock_icon" filename="unlock_icon" retainaspect="1"/>
+		<image name="splashlogo" filename="splashlogo" retainaspect="1"/>
 		<image name="home" filename="home" retainaspect="1"/>
 		<image name="back" filename="back" retainaspect="1"/>
 		<image name="console" filename="console" retainaspect="1"/>
@@ -77,7 +78,7 @@
 	<variables>
 		<variable name="tw_samsung_navbar" value="0" persist="1"/>
 
-		<variable name="tw_hide_kb" value="0"/>
+		<variable name="tw_hide_kb" value="1"/>
 		<variable name="screen_width" value="480"/>
 		<variable name="screen_height" value="800"/>
 		<variable name="status_height" value="30"/>
@@ -185,9 +186,6 @@
 		<variable name="screen_button_game" value="45"/>
 		<variable name="keyboard_terminal_y" value="422"/>
 		<variable name="background_color" value="#1A1A1A99"/>
-		<variable name="accent_color" value="#DC3545CC"/>
-		<variable name="headerxdx_color" value="#DC3545"/>
-		<variable name="accent_color_semitransparent" value="#DC354530"/>
 		<variable name="text_color" value="#EEEEEE"/>
 		<variable name="text_button_color" value="#EEEEEE"/>
 		<variable name="text_success_color" value="#76FF03"/>
@@ -239,6 +237,10 @@
 		<variable name="tw_clock_24_pos_x" value="0"/>
 		<variable name="tw_cpu_pos_x" value="0"/>
 		<variable name="tw_battery_pos_x" value="0"/>
+		<variable name="wpset" value="0" persist="1"/>
+		<variable name="accent_color" value="#0047ABCC"/>
+		<variable name="headerxdx_color" value="#0047ABCC"/>
+		<variable name="accent_color_semitransparent" value="#DC354530"/>
 	</variables>
 
 	<mousecursor>
@@ -261,11 +263,49 @@
 				<image resource="logo"/>
 				<placement x="0" y="0"/>
 			</image>
-			
+
+# default wallpaper		
+
 			<image>
+				<condition var1="wpset" var2="0"/>
 				<image resource="background"/>
 				<placement x="%center_x%" y="407" placement="4"/>
 			</image>
+			
+# wallpaper 2nd
+			
+			<fill color="#360012">
+				<condition var1="wpset" var2="1"/>
+				<placement x="0" y="0" w="%screen_width%" h="%screen_height%"/>
+			</fill>
+			
+			<fill color="%headerxdx_color%">
+				<placement x="0" y="0" w="%screen_width%" h="%header_height%"/>
+			</fill>
+
+			<image>
+				<condition var1="wpset" var2="1"/>
+				<image resource="splashlogo"/>
+				<placement x="%center_x%" y="407" placement="4"/>
+			</image>
+
+# wallpaper 3nd
+	
+			<image>
+				<condition var1="wpset" var2="2"/>
+				<image resource="background"/>
+				<placement x="%center_x%" y="407" placement="4"/>
+			</image>
+
+# wallpaper 4nd
+
+			<image>
+				<condition var1="wpset" var2="3"/>
+				<image resource="background"/>
+				<placement x="%center_x%" y="407" placement="4"/>
+			</image>
+
+# wallpaper 5nd
 
 			<button>
 				<condition var1="tw_busy" var2="0"/>
@@ -608,9 +648,9 @@
 				<condition var1="tw_hide_kb" var2="0"/>
 				<placement x="0" y="%keyboard_terminal_y%" w="%screen_width%" h="42"/>
 				<keymargin x="0" y="0"/>
-				<background color="#111111"/>
-				<key-alphanumeric color="#111111" font="keylabel" textcolor="#EEEEEE"/>
-				<key-other color="#111111" font="keylabel-small" textcolor="#5b5b5bff"/>
+				<background color="#111111CC"/>
+				<key-alphanumeric color="#111111CC" font="keylabel" textcolor="#EEEEEE"/>
+				<key-other color="#111111CC" font="keylabel-small" textcolor="#5b5b5bff"/>
 				<longpress font="keylabel-longpress" textcolor="#5b5b5bff" x="12" y="0"/>
 				<keylabel key="0:k:29" text="Ctrl"/>
 				<keylabel key="0:c:27" text="Esc"/>
@@ -633,9 +673,9 @@
 				<condition var1="tw_hide_kb" var2="0"/>
 				<placement x="0" y="%keyboard_y%" w="480" h="284"/>
 				<keymargin x="4" y="4"/>
-				<background color="#111111"/>
-				<key-alphanumeric color="#111111" font="keylabel" textcolor="#EEEEEE"/>
-				<key-other color="#111111" font="keylabel-small" textcolor="#5b5b5bff"/>
+				<background color="#111111CC"/>
+				<key-alphanumeric color="#111111CC" font="keylabel" textcolor="#EEEEEE"/>
+				<key-other color="#111111CC" font="keylabel-small" textcolor="#5b5b5bff"/>
 				<longpress font="keylabel-longpress" textcolor="#5b5b5bff" x="6" y="0"/>
 				<keylabel key="0:c:8" text="Bksp" resource="backspace"/>
 				<keylabel key="0:action" text="Enter" resource="enter"/>
@@ -686,9 +726,9 @@
 				<condition var1="tw_hide_kb" var2="0"/>
 				<placement x="0" y="%keyboard_y%" w="480" h="284"/>
 				<keymargin x="4" y="4"/>
-				<background color="#111111"/>
-				<key-alphanumeric color="#111111" font="keylabel" textcolor="#EEEEEE"/>
-				<key-other color="#111111" font="keylabel-small" textcolor="#5b5b5bff"/>
+				<background color="#111111CC"/>
+				<key-alphanumeric color="#111111CC" font="keylabel" textcolor="#EEEEEE"/>
+				<key-other color="#111111CC" font="keylabel-small" textcolor="#5b5b5bff"/>
 				<longpress font="keylabel-longpress" textcolor="#5b5b5bff" x="6" y="0"/>
 				<keylabel key="0:c:8" text="Bksp" resource="backspace"/>
 				<keylabel key="0:action" text="Enter" resource="enter"/>

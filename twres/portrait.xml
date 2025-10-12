@@ -10,7 +10,7 @@
 		</style>
 
 		<style name="text_m_accent">
-			<font resource="font_m" color="%accent_color%"/>
+			<font resource="font_m" color="%headerxdx_color%"/>
 		</style>
 
 		<style name="text_m_fail">
@@ -23,7 +23,7 @@
 
 		<style name="input">
 			<background color="%background_color%"/>
-			<cursor color="%accent_color%" hasfocus="1" width="%input_line_width%"/>
+			<cursor color="%headerxdx_color%" hasfocus="1" width="%input_line_width%"/>
 			<font resource="font_m" color="%text_color%"/>
 		</style>
 
@@ -75,48 +75,48 @@
 		</style>
 
 		<style name="console">
-			<fastscroll rectcolor="%accent_color%" w="%fastscroll_w%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
+			<fastscroll rectcolor="%headerxdx_color%" w="%fastscroll_w%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
 			<color foreground="%text_color%" background="#1A1A1A" scroll="#1A1A1A"/>
 			<font resource="fixed"/>
 		</style>
 
 		<style name="terminal">
-			<fastscroll linecolor="%transparent%" rectcolor="%accent_color%" w="%fastscroll_w%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
+			<fastscroll rectcolor="%headerxdx_color%" w="%fastscroll_w%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
 			<background color="#1A1A1A"/>
 			<font resource="fixed" spacing="3" color="%text_color%"/>
 		</style>
 
 		<style name="fileselector">
 			<highlight color="%fileselector_highlight_color%"/>
-			<header background="%background_color%" textcolor="%accent_color%" separatorcolor="%accent_color%" separatorheight="%fileselector_separatorheight%"/>
-			<fastscroll linecolor="%fileselector_linecolor%" rectcolor="%accent_color%" w="%fastscroll_w%" linew="%fastscroll_linew%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
+			<header background="%background_color%" textcolor="%headerxdx_color%" separatorcolor="%headerxdx_color%" separatorheight="%fileselector_separatorheight%"/>
+			<fastscroll linecolor="%fileselector_linecolor%" rectcolor="%headerxdx_color%" w="%fastscroll_w%" linew="%fastscroll_linew%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
 			<separator color="%fileselector_linecolor%" height="%fileselector_separatorheight%"/>
 			<sort name="tw_gui_sort_order"/>
 			<icon folder="folder" file="file"/>
 			<background color="%background_color%"/>
-			<font resource="font_m" spacing="%fileselector_spacing%" color="%text_color%" highlightcolor="%accent_color%"/>
+			<font resource="font_m" spacing="%fileselector_spacing%" color="%text_color%" highlightcolor="%headerxdx_color%"/>
 		</style>
 
 		<style name="listbox">
 			<highlight color="%fileselector_highlight_color%"/>
-			<header background="%background_color%" textcolor="%accent_color%" separatorcolor="%accent_color%" separatorheight="%fileselector_separatorheight%"/>
-			<fastscroll linecolor="%fileselector_linecolor%" rectcolor="%accent_color%" w="%fastscroll_w%" linew="%fastscroll_linew%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
+			<header background="%background_color%" textcolor="%headerxdx_color%" separatorcolor="%headerxdx_color%" separatorheight="%fileselector_separatorheight%"/>
+			<fastscroll linecolor="%fileselector_linecolor%" rectcolor="%headerxdx_color%" w="%fastscroll_w%" linew="%fastscroll_linew%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
 			<separator color="%fileselector_linecolor%" height="%fileselector_separatorheight%"/>
 			<icon selected="radio_true" unselected="radio_false"/>
 			<background color="%background_color%"/>
-			<font resource="font_m" spacing="%fileselector_spacing%" color="%text_color%" highlightcolor="%accent_color%"/>
+			<font resource="font_m" spacing="%fileselector_spacing%" color="%text_color%" highlightcolor="%headerxdx_color%"/>
 		</style>
 
 		<style name="scrolllist">
 			<background color="%background_color%"/>
 			<font resource="font_m" spacing="%fileselector_spacing%" color="%text_color%"/>
-			<fastscroll linecolor="%fileselector_linecolor%" rectcolor="%accent_color%" w="%fastscroll_w%" linew="%fastscroll_linew%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
+			<fastscroll linecolor="%fileselector_linecolor%" rectcolor="%headerxdx_color%" w="%fastscroll_w%" linew="%fastscroll_linew%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
 		</style>
 
 		<style name="partitionlist">
 			<highlight color="%fileselector_highlight_color%"/>
-			<header background="%background_color%" textcolor="%accent_color%" separatorcolor="%accent_color%" separatorheight="%fileselector_separatorheight%"/>
-			<fastscroll linecolor="%fileselector_linecolor%" rectcolor="%accent_color%" w="%fastscroll_w%" linew="%fastscroll_linew%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
+			<header background="%background_color%" textcolor="%headerxdx_color%" separatorcolor="%headerxdx_color%" separatorheight="%fileselector_separatorheight%"/>
+			<fastscroll linecolor="%fileselector_linecolor%" rectcolor="%headerxdx_color%" w="%fastscroll_w%" linew="%fastscroll_linew%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
 			<dimensions lineh="%slidervalue_lineh%" linepadding="%slidervalue_padding%" sliderw="%slidervalue_sliderw%" sliderh="%slidervalue_sliderh%"/>
 			<icon selected="checkbox_true" unselected="checkbox_false"/>
 			<separator color="%fileselector_linecolor%" height="%fileselector_separatorheight%"/>
@@ -127,8 +127,8 @@
 		<style name="partitionlist_storage">
 			<highlight color="%fileselector_highlight_color%"/>
 			<placement x="%col1_x_left%" y="%row5_y%" w="%content_overlay_width%" h="%partitionlist_storage_height%"/>
-			<header background="%background_color%" textcolor="%accent_color%" separatorcolor="%accent_color%" separatorheight="%fileselector_separatorheight%"/>
-			<fastscroll linecolor="%fileselector_linecolor%" rectcolor="%accent_color%" w="%fastscroll_w%" linew="%fastscroll_linew%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
+			<header background="%background_color%" textcolor="%headerxdx_color%" separatorcolor="%headerxdx_color%" separatorheight="%fileselector_separatorheight%"/>
+			<fastscroll linecolor="%fileselector_linecolor%" rectcolor="%headerxdx_color%" w="%fastscroll_w%" linew="%fastscroll_linew%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
 			<dimensions lineh="%slidervalue_lineh%" linepadding="%slidervalue_padding%" sliderw="%slidervalue_sliderw%" sliderh="%slidervalue_sliderh%"/>
 			<icon selected="radio_true" unselected="radio_false"/>
 			<separator color="%fileselector_linecolor%" height="%fileselector_separatorheight%"/>
@@ -138,21 +138,21 @@
 
 		<style name="advanced_listbox">
 			<highlight color="%fileselector_highlight_color%"/>
-			<fastscroll linecolor="%fileselector_linecolor%" rectcolor="%accent_color%" w="%fastscroll_w%" linew="%fastscroll_linew%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
+			<fastscroll linecolor="%fileselector_linecolor%" rectcolor="%headerxdx_color%" w="%fastscroll_w%" linew="%fastscroll_linew%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
 			<separator color="%fileselector_linecolor%" height="%fileselector_separatorheight%"/>
 			<dimensions lineh="%slidervalue_lineh%" linepadding="%slidervalue_padding%" sliderw="%slidervalue_sliderw%" sliderh="%slidervalue_sliderh%"/>
 			<icon selected="handle" unselected="handle"/>
 			<background color="%background_color%"/>
-			<font resource="font_m" spacing="%fileselector_spacing%" color="%text_color%" highlightcolor="%accent_color%"/>
+			<font resource="font_m" spacing="%fileselector_spacing%" color="%text_color%" highlightcolor="%headerxdx_color%"/>
 		</style>
 
 		<style name="options_listbox">
 			<highlight color="%fileselector_highlight_color%"/>
-			<fastscroll linecolor="%fileselector_linecolor%" rectcolor="%accent_color%" w="%fastscroll_w%" linew="%fastscroll_linew%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
+			<fastscroll linecolor="%fileselector_linecolor%" rectcolor="%headerxdx_color%" w="%fastscroll_w%" linew="%fastscroll_linew%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
 			<separator color="%background_color%" height="%fileselector_separatorheight%"/>
 			<dimensions lineh="%slidervalue_lineh%" linepadding="%slidervalue_padding%" sliderw="%slidervalue_sliderw%" sliderh="%slidervalue_sliderh%"/>
 			<background color="%background_color%"/>
-			<font resource="font_m" spacing="%fileselector_spacing%" color="%text_color%" highlightcolor="%accent_color%"/>
+			<font resource="font_m" spacing="%fileselector_spacing%" color="%text_color%" highlightcolor="%headerxdx_color%"/>
 		</style>
 
 		<style name="slider">
@@ -177,6 +177,8 @@
 		<page name="main">
 			<action>
 				<actions>
+					<action function="set">tw_hide_kb=1</action>
+					<action function="page">terminalcommand</action>
 					<action function="set">tw_screen_timeout_secs=0</action>
 					<action function="set">tw_clear_destination=main2</action>
 					<action function="page">clear_vars</action>
@@ -255,10 +257,23 @@
 				<placement x="%indent%" y="%row2a_y%"/>
 				<text>Install</text>
 			</text>
+			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row13a_y%"/>
+				<text>USB</text>
+				<actions>
+		<action function="page">mtpsued</action>
+		</actions>
+			</button>
+			
+			<action>
+				<touch key="power+volup"/>
+				<action function="screenshot"/>
+			</action>
 
 			<action>
 				<touch key="volup"/>
-				<action function="page">bkpmenu</action>
+				<action function="page">usbmenu</action>
 			</action>
 			
 			<action>
@@ -336,6 +351,14 @@
 				<actions>
 		<action function="editfile">bash "/twres/bin/backup"</action>
 		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row13a_y%"/>
+				<text>USB</text>
+				<actions>
+		<action function="page">mtpsued</action>
 		</actions>
 			</button>
 			
@@ -434,6 +457,14 @@
 		</actions>
 			</button>
 			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row13a_y%"/>
+				<text>USB</text>
+				<actions>
+		<action function="page">mtpsued</action>
+		</actions>
+			</button>
+			
 			<action>
 				<touch key="volup"/>
 				<action function="page">wpmenu</action>
@@ -527,6 +558,14 @@
 				<text>Backup</text>
 			</text>
 			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row13a_y%"/>
+				<text>USB</text>
+				<actions>
+		<action function="page">mtpsued</action>
+		</actions>
+			</button>
+			
 			<action>
 				<touch key="volup"/>
 				<action function="page">mtpmenu</action>
@@ -614,6 +653,14 @@
 		</actions>
 			</button>
 			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row13a_y%"/>
+				<text>USB</text>
+				<actions>
+		<action function="page">mtpsued</action>
+		</actions>
+			</button>
+			
 			<text color="%text_color%">
 				<font resource="font_m"/>
 				<placement x="%indent%" y="%row13a_y%"/>
@@ -627,7 +674,7 @@
 			
 			<action>
 				<touch key="voldown"/>
-				<action function="page">main2</action>
+				<action function="page">usbmenu</action>
 			</action>
 			
 			<action>
@@ -638,7 +685,550 @@
 		</actions>
             </action>
 		</page>
+		
+# usb menu
 				
+		<page name="usbmenu">
+			<template name="page"/>
+			
+			<image>
+				<image resource="splashteamwin"/>
+				<placement x="82" y="30"/>
+			</image>
+
+			<text style="text_m">
+				<condition var1="tw_no_cpu_temp" var2="0"/>
+				<placement x="%col1_x_header%" y="%row4_header_y%"/>
+				<text>By TakuruKagami</text>
+			</text>
+			
+			<text style="text_m">
+				<condition var1="tw_no_cpu_temp" var2="0"/>
+				<placement x="%col1_x_header%" y="%row4_header_y1%"/>
+				<text>Based version: %tw_version%</text>
+			</text>
+
+			<button style="main_button">
+				<placement x="%indent%" y="%row2a_y%"/>
+				<text>Install</text>
+		<actions>
+		<action function="editfile">bash "/twres/bin/file_manager"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+
+			<button style="main_button">
+				<placement x="%center_x%" y="%row2a_y%"/>
+				<text>Format Drive</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/wipe"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%indent%" y="%row8_y%"/>
+				<text>Mount</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/mountp"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%indent%" y="%row13a_y%"/>
+				<text>Reboot</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/reboot"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row8_y%"/>
+				<text>Backup</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/backup"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button>
+				<image resource="main_button2"/>
+				<placement x="%center_x%" y="%row13a_y%"/>
+				<text>USB</text>
+				<actions>
+		<action function="page">mtpsued</action>
+		</actions>
+			</button>
+			
+			<text color="%text_color%">
+				<font resource="font_m"/>
+				<placement x="%center_x%" y="%row13a_y%"/>
+				<text>USB</text>
+			</text>
+			
+			<action>
+				<touch key="volup"/>
+				<action function="page">rbmenu</action>
+			</action>
+			
+			<action>
+				<touch key="voldown"/>
+				<action function="page">main2</action>
+			</action>
+			
+			<action>
+				<touch key="power"/>
+				<actions>
+		<action function="page">mtpsued</action>
+		</actions>
+            </action>
+		</page>
+		
+# MTP enabled
+		
+		<page name="mtpsued">
+			<template name="page"/>
+			
+			<text style="text_l">
+				<placement x="%col1_x_header%" y="%row3_header_y%"/>
+				<text>USB</text>
+			</text>
+			
+			<text color="%text_color%">
+				<font resource="font_m"/>
+				<placement x="%indent%" y="%row2a_y%"/>
+				<conditions>
+				 <condition var1="tw_has_mtp" var2="1"/>
+				 <condition var1="tw_mtp_enabled" var2="0"/>
+				 </conditions>
+				<text>MTP enabled</text>
+			</text>
+			
+			<text color="%text_color%">
+				<font resource="font_m"/>
+				<placement x="%indent%" y="%row2a_y%"/>
+				<conditions>
+				 <condition var1="tw_has_mtp" var2="1"/>
+				 <condition var1="tw_mtp_enabled" var2="1"/>
+				 </conditions>
+				<text>MTP disabled</text>
+			</text>
+			
+			<action>
+				<conditions>
+				 <condition var1="tw_has_mtp" var2="1"/>
+				 <condition var1="tw_mtp_enabled" var2="0"/>
+				 </conditions>
+				<actions>
+					<action function="page">mtpsued2</action>
+				</actions>
+			</action>
+			
+			<button>
+				<image resource="main_button2"/>
+				 <conditions>
+				 <condition var1="tw_has_mtp" var2="1"/>
+				 <condition var1="tw_mtp_enabled" var2="0"/>
+				 </conditions>
+				<placement x="%indent%" y="%row2a_y%"/>
+				<text>MTP enabled</text>
+				<action function="startmtp"/>
+			</button>
+
+			<button>
+				<image resource="main_button2"/>
+				<conditions>
+				<condition var1="tw_has_mtp" var2="1"/>
+				<condition var1="tw_mtp_enabled" var2="1"/>
+				</conditions>
+				<placement x="%indent%" y="%row2a_y%"/>
+				<text>MTP disabled</text>
+				<actions>
+				<action function="stopmtp"/>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row2a_y%"/>
+				<text>Sideload</text>
+				<actions>
+					<action function="set">tw_back=colortesto</action>
+					<action function="set">tw_action=adbsideload</action>
+					<action function="set">tw_action_text1={@sideload_confirm=ADB Sideload}</action>
+					<action function="set">tw_action_text2={@sideload_usage=Usage: adb sideload filename.zip}</action>
+					<action function="set">tw_complete_text1={@sideload_complete=ADB Sideload Complete}</action>
+					<action function="set">tw_has_cancel=1</action>
+					<action function="set">tw_show_reboot=1</action>
+					<action function="set">tw_cancel_action=adbsideloadcancel</action>
+					<action function="page">action_page</action>
+				</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%indent%" y="%row8_y%"/>
+				<text>Fastboot</text>
+				<actions>
+				<action function="editfile">bash "/twres/bin/fastbootmode"</action>
+				<action function="page">terminalcommand</action>
+				</actions>
+			</button>
+			
+			<action>
+				<touch key="volup"/>
+				<action function="page">fastbootcalesto</action>
+			</action>
+			
+			<action>
+				<touch key="voldown"/>
+				<action function="page">colortesto</action>
+			</action>
+			
+			<action>
+				<touch key="power"/>
+				<action function="stopmtp"/>
+				<action function="page">mtpsued2</action>
+			</actions>
+
+			<action>
+				<touch key="back"/>
+				<action function="page">main</action>
+			</action>
+
+			<action>
+				<touch key="home"/>
+				<action function="page">main</action>
+			</action>
+			
+			<action>
+				<touch key="power+voldown"/>
+				<actions>
+					<action function="page">main2</action>
+				</actions>
+            </action>
+		</page>
+		
+# MTP DISABLE
+
+		<page name="mtpsued2">
+			<template name="page"/>
+			
+			<text color="%text_color%">
+				<font resource="font_m"/>
+				<placement x="%indent%" y="%row2a_y%"/>
+				<conditions>
+				 <condition var1="tw_has_mtp" var2="1"/>
+				 <condition var1="tw_mtp_enabled" var2="0"/>
+				 </conditions>
+				<text>MTP enabled</text>
+			</text>
+			
+			<text color="%text_color%">
+				<font resource="font_m"/>
+				<placement x="%indent%" y="%row2a_y%"/>
+				<conditions>
+				 <condition var1="tw_has_mtp" var2="1"/>
+				 <condition var1="tw_mtp_enabled" var2="1"/>
+				 </conditions>
+				<text>MTP disabled</text>
+			</text>
+			
+			<text style="text_l">
+				<placement x="%col1_x_header%" y="%row3_header_y%"/>
+				<text>USB</text>
+			</text>
+			
+			<button>
+				<image resource="main_button2"/>
+				 <conditions>
+				 <condition var1="tw_has_mtp" var2="1"/>
+				 <condition var1="tw_mtp_enabled" var2="0"/>
+				 </conditions>
+				<placement x="%indent%" y="%row2a_y%"/>
+				<text>MTP enabled</text>
+				<action function="startmtp"/>
+			</button>
+
+			<button>
+				<image resource="main_button2"/>
+				<conditions>
+				<condition var1="tw_has_mtp" var2="1"/>
+				<condition var1="tw_mtp_enabled" var2="1"/>
+				</conditions>
+				<placement x="%indent%" y="%row2a_y%"/>
+				<text>MTP disabled</text>
+				<actions>
+				<action function="stopmtp"/>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row2a_y%"/>
+				<text>Sideload</text>
+				<actions>
+					<action function="set">tw_back=colortesto</action>
+					<action function="set">tw_action=adbsideload</action>
+					<action function="set">tw_action_text1={@sideload_confirm=ADB Sideload}</action>
+					<action function="set">tw_action_text2={@sideload_usage=Usage: adb sideload filename.zip}</action>
+					<action function="set">tw_complete_text1={@sideload_complete=ADB Sideload Complete}</action>
+					<action function="set">tw_has_cancel=1</action>
+					<action function="set">tw_show_reboot=1</action>
+					<action function="set">tw_cancel_action=adbsideloadcancel</action>
+					<action function="page">action_page</action>
+				</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%indent%" y="%row8_y%"/>
+				<text>Fastboot</text>
+				<actions>
+				<action function="editfile">bash "/twres/bin/fastbootmode"</action>
+				<action function="page">terminalcommand</action>
+				</actions>
+			</button>
+			
+			<action>
+				<touch key="volup"/>
+				<action function="page">fastbootcalesto</action>
+			</action>
+			
+			<action>
+				<touch key="voldown"/>
+				<action function="page">colortesto</action>
+			</action>
+			
+			<action>
+				<touch key="power"/>
+				<action function="startmtp"/>
+				<action function="page">mtpsued</action>
+			</actions>
+
+			<action>
+				<touch key="back"/>
+				<action function="page">main</action>
+			</action>
+
+			<action>
+				<touch key="home"/>
+				<action function="page">main</action>
+			</action>
+
+			<action>
+				<touch key="power+voldown"/>
+				<actions>
+					<action function="page">main2</action>
+				</actions>
+            </action>
+		</page>
+		
+# Sideload
+		
+		<page name="colortesto">
+			<template name="page"/>
+			
+			<text style="text_l">
+				<placement x="%col1_x_header%" y="%row3_header_y%"/>
+				<text>USB</text>
+			</text>
+			
+			<text color="%text_color%">
+				<font resource="font_m"/>
+				<placement x="%center_x%" y="%row2a_y%"/>
+				<text>Sideload</text>
+			</text>
+			
+			<button style="main_button">
+				 <conditions>
+				 <condition var1="tw_has_mtp" var2="1"/>
+				 <condition var1="tw_mtp_enabled" var2="0"/>
+				 </conditions>
+				<placement x="%indent%" y="%row2a_y%"/>
+				<text>MTP enabled</text>
+				<action function="startmtp"/>
+			</button>
+
+			<button style="main_button">
+				<conditions>
+				<condition var1="tw_has_mtp" var2="1"/>
+				<condition var1="tw_mtp_enabled" var2="1"/>
+				</conditions>
+				<placement x="%indent%" y="%row2a_y%"/>
+				<text>MTP disabled</text>
+				<actions>
+				<action function="stopmtp"/>
+		</actions>
+			</button>
+			
+			<button>
+				<image resource="main_button2"/>
+				<placement x="%center_x%" y="%row2a_y%"/>
+				<text>Sideload</text>
+				<actions>
+					<action function="set">tw_back=colortesto</action>
+					<action function="set">tw_action=adbsideload</action>
+					<action function="set">tw_action_text1={@sideload_confirm=ADB Sideload}</action>
+					<action function="set">tw_action_text2={@sideload_usage=Usage: adb sideload filename.zip}</action>
+					<action function="set">tw_complete_text1={@sideload_complete=ADB Sideload Complete}</action>
+					<action function="set">tw_has_cancel=1</action>
+					<action function="set">tw_show_reboot=1</action>
+					<action function="set">tw_cancel_action=adbsideloadcancel</action>
+					<action function="page">action_page</action>
+				</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%indent%" y="%row8_y%"/>
+				<text>Fastboot</text>
+				<actions>
+				<action function="editfile">bash "/twres/bin/fastbootmode"</action>
+				<action function="page">terminalcommand</action>
+				</actions>
+			</button>
+			
+			<action>
+				<touch key="volup"/>
+				<action function="page">mtpsued</action>
+			</action>
+			
+			<action>
+				<touch key="voldown"/>
+				<action function="page">fastbootcalesto</action>
+			</action>
+			
+			<action>
+				<touch key="power"/>
+				<actions>
+					<action function="set">tw_back=colortesto</action>
+					<action function="set">tw_action=adbsideload</action>
+					<action function="set">tw_action_text1={@sideload_confirm=ADB Sideload}</action>
+					<action function="set">tw_action_text2={@sideload_usage=Usage: adb sideload filename.zip}</action>
+					<action function="set">tw_complete_text1={@sideload_complete=ADB Sideload Complete}</action>
+					<action function="set">tw_has_cancel=1</action>
+					<action function="set">tw_show_reboot=1</action>
+					<action function="set">tw_cancel_action=adbsideloadcancel</action>
+					<action function="page">action_page</action>
+				</actions>
+			</actions>
+
+			<action>
+				<touch key="back"/>
+				<action function="page">main</action>
+			</action>
+
+			<action>
+				<touch key="home"/>
+				<action function="page">main</action>
+			</action>
+			
+			<action>
+				<touch key="power+voldown"/>
+				<actions>
+					<action function="page">main2</action>
+				</actions>
+            </action>
+		</page>
+		
+# Fastboot
+		
+		<page name="fastbootcalesto">
+			<template name="page"/>
+			
+			<text style="text_l">
+				<placement x="%col1_x_header%" y="%row3_header_y%"/>
+				<text>USB</text>
+			</text>
+			
+			<text color="%text_color%">
+				<font resource="font_m"/>
+				<placement x="%indent%" y="%row8_y%"/>
+				<text>Fastboot</text>
+			</text>
+			
+			<button style="main_button">
+				 <conditions>
+				 <condition var1="tw_has_mtp" var2="1"/>
+				 <condition var1="tw_mtp_enabled" var2="0"/>
+				 </conditions>
+				<placement x="%indent%" y="%row2a_y%"/>
+				<text>MTP enabled</text>
+				<action function="startmtp"/>
+			</button>
+
+			<button style="main_button">
+				<conditions>
+				<condition var1="tw_has_mtp" var2="1"/>
+				<condition var1="tw_mtp_enabled" var2="1"/>
+				</conditions>
+				<placement x="%indent%" y="%row2a_y%"/>
+				<text>MTP disabled</text>
+				<actions>
+				<action function="stopmtp"/>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row2a_y%"/>
+				<text>Sideload</text>
+				<actions>
+					<action function="set">tw_back=colortesto</action>
+					<action function="set">tw_action=adbsideload</action>
+					<action function="set">tw_action_text1={@sideload_confirm=ADB Sideload}</action>
+					<action function="set">tw_action_text2={@sideload_usage=Usage: adb sideload filename.zip}</action>
+					<action function="set">tw_complete_text1={@sideload_complete=ADB Sideload Complete}</action>
+					<action function="set">tw_has_cancel=1</action>
+					<action function="set">tw_show_reboot=1</action>
+					<action function="set">tw_cancel_action=adbsideloadcancel</action>
+					<action function="page">action_page</action>
+				</actions>
+			</button>
+			
+			<button>
+				<image resource="main_button2"/>
+				<placement x="%indent%" y="%row8_y%"/>
+				<text>Fastboot</text>
+				<actions>
+				<action function="editfile">bash "/twres/bin/fastbootmode"</action>
+				<action function="page">terminalcommand</action>
+				</actions>
+			</button>
+			
+			<action>
+				<touch key="volup"/>
+				<action function="page">colortesto</action>
+			</action>
+			
+			<action>
+				<touch key="voldown"/>
+				<action function="page">mtpsued</action>
+			</action>
+			
+			<action>
+				<touch key="power"/>
+				<actions>
+				<action function="editfile">bash "/twres/bin/fastbootmode"</action>
+				<action function="page">terminalcommand</action>
+				</actions>
+			</actions>
+
+			<action>
+				<touch key="back"/>
+				<action function="page">main</action>
+			</action>
+
+			<action>
+				<touch key="home"/>
+				<action function="page">main</action>
+			</action>
+			
+			<action>
+				<touch key="power+voldown"/>
+				<actions>
+					<action function="page">main2</action>
+				</actions>
+            </action>
+		</page>
+		
 		<page name="Colortwrp">
 			<template name="page"/>
 			
@@ -1821,7 +2411,7 @@
 				<action function="page">formatdata_confirm</action>
 			</input>
 
-			<fill color="%accent_color%">
+			<fill color="%headerxdx_color%">
 				<placement x="%indent%" y="row11_y" w="%content_width%" h="input_line_width"/>
 			</fill>
 
@@ -2540,7 +3130,7 @@
 				</actions>
 			</input>
 
-			<fill color="%accent_color%">
+			<fill color="%headerxdx_color%">
 				<placement x="%indent%" y="row5a_y" w="%content_width%" h="input_line_width" placement="1"/>
 			</fill>
 
@@ -2656,7 +3246,7 @@
 				<action function="page">backupencryption2</action>
 			</input>
 
-			<fill color="%accent_color%">
+			<fill color="%headerxdx_color%">
 				<placement x="%indent%" y="row8_y" w="%content_width%" h="input_line_width" placement="1"/>
 			</fill>
 
@@ -2764,7 +3354,7 @@
 				<action function="page">checkbackuppassword</action>
 			</input>
 
-			<fill color="%accent_color%">
+			<fill color="%headerxdx_color%">
 				<placement x="%indent%" y="row8_y" w="%content_width%" h="input_line_width" placement="1"/>
 			</fill>
 
@@ -2989,7 +3579,7 @@
 				<action function="page">try_restore_decrypt</action>
 			</input>
 
-			<fill color="%accent_color%">
+			<fill color="%headerxdx_color%">
 				<placement x="%indent%" y="row4a_y" w="%content_width%" h="input_line_width" placement="1"/>
 			</fill>
 
@@ -3210,7 +3800,7 @@
 				</actions>
 			</input>
 
-			<fill color="%accent_color%">
+			<fill color="%headerxdx_color%">
 				<placement x="%indent%" y="row4_y" w="%content_width%" h="input_line_width" placement="1"/>
 			</fill>
 
@@ -5028,7 +5618,7 @@
 				</actions>
 			</input>
 
-			<fill color="%accent_color%">
+			<fill color="%headerxdx_color%">
 				<placement x="%indent%" y="row4_y" w="%content_width%" h="input_line_width" placement="1"/>
 			</fill>
 
@@ -5083,7 +5673,7 @@
 				</actions>
 			</input>
 
-			<fill color="%accent_color%">
+			<fill color="%headerxdx_color%">
 				<placement x="%indent%" y="row4_y" w="%content_width%" h="input_line_width" placement="1"/>
 			</fill>
 
@@ -5137,7 +5727,7 @@
 				</actions>
 			</input>
 
-			<fill color="%accent_color%">
+			<fill color="%headerxdx_color%">
 				<placement x="%indent%" y="row4_y" w="%content_width%" h="input_line_width" placement="1"/>
 			</fill>
 
@@ -5308,7 +5898,7 @@
 				<action function="page">trydecrypt</action>
 			</input>
 
-			<fill color="%accent_color%">
+			<fill color="%headerxdx_color%">
 				<placement x="%indent%" y="row4a_y" w="%content_width%" h="input_line_width" placement="1"/>
 			</fill>
 
@@ -5371,7 +5961,7 @@
 
 			<patternpassword>
 				<placement x="%pattern_x%" y="%row5_y%" w="%pattern_size%" h="%pattern_size%"/>
-				<dot color="%fileselector_linecolor%" activecolor="%accent_color%" radius="%pattern_dot_dia%"/>
+				<dot color="%fileselector_linecolor%" activecolor="%headerxdx_color%" radius="%pattern_dot_dia%"/>
 				<line color="%fileselector_linecolor%" width="%pattern_line_w%"/>
 				<data name="tw_crypto_password"/>
 				<action function="page">trydecrypt</action>
@@ -5447,7 +6037,7 @@
 				<action function="page">trydecrypt</action>
 			</input>
 
-			<fill color="%accent_color%">
+			<fill color="%headerxdx_color%">
 				<placement x="%indent%" y="row4a_y" w="%content_width%" h="input_line_width" placement="1"/>
 			</fill>
 
@@ -5562,19 +6152,19 @@
 
 			<terminal>
 				<condition var1="tw_hide_kb" var2="0"/>
-				<placement x="0" y="%row3_header_y%" w="%screen_width%" h="%console_terminal_height%"/>
+				<placement x="0" y="60" w="%screen_width%" h="%console_terminal_height%"/>
 			</terminal>
 
 			<terminal>
 				<condition var1="tw_hide_kb" var2="1"/>
-				<placement x="0" y="%row3_header_y%" w="%screen_width%" h="%console_terminal_height%"/>
+				<placement x="0" y="60" w="%screen_width%" h="%console_terminal_height%"/>
 			</terminal>
 
 			<template name="keyboardterminaltemplate"/>
 
 			<template name="keyboardtemplate"/>
 			
-			<fill color="%accent_color%">
+			<fill color="%headerxdx_color%">
 				<condition var1="tw_hide_kb" op="=" var2="1" />
 				<placement x="0" y="420" w="%screen_width%" h="350"/>
 			</fill>
@@ -5693,7 +6283,7 @@
 				<image resource="buttonxd"/>
 				<condition var1="tw_busy" var2="0"/>
 				<actions>
-					<action function="editfile">w</action>
+					<action function="editfile">k</action>
 					<action function="page">terminalcommand</action>
 				</actions>
 			</button>
@@ -5704,7 +6294,7 @@
 				<image resource="buttonxd"/>
 				<condition var1="tw_busy" var2="0"/>
 				<actions>
-					<action function="editfile">s</action>
+					<action function="editfile">j</action>
 					<action function="page">terminalcommand</action>
 				</actions>
 			</button>
@@ -5715,7 +6305,7 @@
 				<image resource="buttonxd"/>
 				<condition var1="tw_busy" var2="0"/>
 				<actions>
-					<action function="editfile">7</action>
+					<action function="editfile">l</action>
 					<action function="page">terminalcommand</action>
 				</actions>
 			</button>
@@ -5756,21 +6346,14 @@
 				<condition var1="tw_hide_kb" op="=" var2="1" />
 				<font resource="font_m"/>
 				<placement x="230" y="450" placement="4"/>
-				<text>W</text>
+				<text>Up</text>
 			</text>
 			
 			<text color="%text_color%">
 				<condition var1="tw_hide_kb" op="=" var2="1" />
 				<font resource="font_m"/>
 				<placement x="230" y="650" placement="4"/>
-				<text>S</text>
-			</text>
-			
-			<text color="%text_color%">
-				<condition var1="tw_hide_kb" op="=" var2="1" />
-				<font resource="font_m"/>
-				<placement x="435" y="700" placement="4"/>
-				<text>GAMES</text>
+				<text>Down</text>
 			</text>
 			
 			<button>
@@ -5801,6 +6384,11 @@
 					<action function="changeterminal"/>
 				</actions>
 			</action>
+			
+			<action>
+				<touch key="power+volup"/>
+				<action function="screenshot"/>
+            </action>
 
 			<action>
 				<touch key="voldown"/>
@@ -6217,7 +6805,7 @@
 				</actions>
 			</input>
 
-			<fill color="%accent_color%">
+			<fill color="%headerxdx_color%">
 				<placement x="%indent%" y="row4_y" w="%content_width%" h="input_line_width" placement="1"/>
 			</fill>
 

@@ -1,20 +1,47 @@
 #!/bin/bash
+
 terminal_height=$(stty size | cut -d ' ' -f 1)
 readonly VIEW_HEIGHT=$((terminal_height - 6))
 
 stty_orig="$(stty -g)"
 trap 'stty "$stty_orig"; printf "\033c"' EXIT INT TERM
 
-readonly REBOOT_MENU_OPTIONS=(
-    "Mount internal" "twrp mount data"
-    "Mount exteral (not tested)" "twrp mount external_sd"
-    "Mount usb otg (not tested)" "twrp mount usb-otg"
-    "Mount system" "twrp mount system"
-    "Mount system ext (not tested)" "twrp mount system_ext"
-    "Mount vendor" "twrp mount vendor"
-    "Mount product" "twrp mount product"
-    "Mount odm" "twrp mount odm"
+is_mounted() {
+    grep -q " $1 " /proc/mounts
+    return $?
+}
+
+PARTITIONS=(
+    "internal" "data" "/data" ""
+    "external" "external_sd" "/external_sd" "(not tested)"
+    "usb otg" "usb-otg" "/usb-otg" "(not tested)"
+    "system" "system" "/system_root" "(uses /system_root)"
+    "system ext" "system_ext" "/system_ext" "(not tested)"
+    "vendor" "vendor" "/vendor" ""
+    "product" "product" "/product" ""
+    "odm" "odm" "/odm" ""
 )
+
+REBOOT_MENU_OPTIONS=()
+
+for (( i=0; i < ${#PARTITIONS[@]}; i+=4 )); do
+    NAME="${PARTITIONS[i]}"
+    TWRP_NAME="${PARTITIONS[i+1]}"
+    MOUNT_POINT="${PARTITIONS[i+2]}"
+    NOTE="${PARTITIONS[i+3]}"
+
+    if is_mounted "$MOUNT_POINT"; then
+        DISPLAY_TEXT="Unmount $NAME $NOTE"
+        COMMAND="twrp unmount $TWRP_NAME"
+        REBOOT_MENU_OPTIONS+=( "$DISPLAY_TEXT" "$COMMAND" )
+    else
+        DISPLAY_TEXT="Mount $NAME $NOTE"
+        COMMAND="twrp mount $TWRP_NAME"
+        REBOOT_MENU_OPTIONS+=( "$DISPLAY_TEXT" "$COMMAND" )
+    fi
+done
+
+readonly REBOOT_MENU_OPTIONS
 readonly OPTION_COUNT=$(( ${#REBOOT_MENU_OPTIONS[@]} / 2 ))
 
 main_reboot_menu() {
@@ -42,7 +69,7 @@ main_reboot_menu() {
         done
 
         printf "=================================\n"
-        printf "[vol+] Up | [vol-] Down | [power] Select | [power+vol-] Quit\n"
+        printf "[vol+] Up | [vol-] Down | [power] Flash | [power+vol-] Quit\n" 
 
         stty -echo -icanon
         read -n 1 menu_key
@@ -70,9 +97,16 @@ main_reboot_menu() {
                 fi
                 
                 echo "Executing: $command"
+                
                 $command
                 
-				echo "Press any key to return to the menu..."
+                if [[ "$command" == twrp\ mount* || "$command" == twrp\ unmount* ]]; then
+                    echo "Mount/Unmount performed. Restarting menu to refresh status..."
+                    sleep 1 
+                    exec "$0" 
+                fi
+
+                echo "Press any key to return to the menu..."
                 read -n 1 wait_key
                 ;;
             q)
