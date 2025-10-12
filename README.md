@@ -1,4 +1,22 @@
-Unpack TWRP and Paste to twres
+# DTRecovery
+
+TWRP theme for phone dont have touch driver
+
+**HOW INSTALL IT**
+- You have twrp
+- Download AIK in here : [Here](https://github.com/osm0sis/Android-Image-Kitchen)
+- Unpack AIK ZIP to folder and enter the folder
+- Paste Your twrp/recovery.img to AIK folder and press unpackimg.bat
+- After that ramdisk folder will appear
+- Unpack and paste twres from DTRecovery ZIP to ramdisk folder [replace/override]
+- After that press repackimg.bat
+- then image-new will appear that is new file recovery.img that already patched with DTRecovery theme
+- Flash it and Done now its support HW Keys
+
+Vol up = key up
+Vol down = key down
+Power = enter/ok
+Vol down + Power = exit to main menu
 
 If menu error not execute do
 chmod +x /path/to/AIK/ramdisk/twres/bin/*
