@@ -13,6 +13,17 @@ TWRP theme for phone dont have touch driver
 - then image-new will appear that is new file recovery.img that already patched with DTRecovery theme
 - Flash it and Done now its support HW Keys
 
+**CARA INSTALL INI**
+- Punya twrp port atau TWRP yang gak fungsi touchnya
+- Unduh AIK di sini: [Di sini](https://github.com/osm0sis/Android-Image-Kitchen)
+- Ekstrak ZIP AIK ke folder dan masuk ke folder tersebut
+- Paste twrp/recovery.img ke folder AIK dan tekan unpackimg.bat
+- Setelah itu folder ramdisk akan muncul
+- Ekstrak dan paste replace twrp dari ZIP DTRecovery ke folder ramdisk
+- Setelah itu tekan repackimg.bat
+- Kemudian akan muncul image-new yaitu file recovery.img baru yang sudah di-patch dengan tema DTRecovery
+- Flash dan Selesai sekarang sudah mendukung HW Keys
+
 | Button | | |
 | :---- | :----: | ----: |
 | Vol up = key up | Vol down = key down | Power = enter/ok |
