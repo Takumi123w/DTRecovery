@@ -73,6 +73,7 @@
 		<image name="kb_arrow_right" filename="kb_arrow_right" retainaspect="1"/>
 		<image name="kb_arrow_up" filename="kb_arrow_up" retainaspect="1"/>
 		<image name="kb_arrow_down" filename="kb_arrow_down" retainaspect="1"/>
+		<image name="naitoumaia" filename="naitoumaia" retainaspect="1"/>
 	</resources>
 
 	<variables>
@@ -241,6 +242,7 @@
 		<variable name="accent_color" value="#0047ABCC"/>
 		<variable name="headerxdx_color" value="#0047ABCC"/>
 		<variable name="accent_color_semitransparent" value="#DC354530"/>
+		<variable name="lockdbt1" value="0"/>
 	</variables>
 
 	<mousecursor>
@@ -280,6 +282,7 @@
 			</fill>
 			
 			<fill color="%headerxdx_color%">
+				<condition var1="wpset" var2="1"/>
 				<placement x="0" y="0" w="%screen_width%" h="%header_height%"/>
 			</fill>
 
@@ -290,10 +293,20 @@
 			</image>
 
 # wallpaper 3nd
+
+			<fill color="#000000">
+				<condition var1="wpset" var2="2"/>
+				<placement x="0" y="0" w="%screen_width%" h="%screen_height%"/>
+			</fill>
+			
+			<fill color="%headerxdx_color%">
+				<condition var1="wpset" var2="2"/>
+				<placement x="0" y="0" w="%screen_width%" h="%header_height%"/>
+			</fill>
 	
 			<image>
 				<condition var1="wpset" var2="2"/>
-				<image resource="background"/>
+				<image resource="naitoumaia"/>
 				<placement x="%center_x%" y="407" placement="4"/>
 			</image>
 
@@ -313,6 +326,13 @@
 				<image resource="logo"/>
 				<action function="key">home</action>
 			</button>
+			
+# Dark no wallpaper
+
+			<fill color="#000000">
+				<condition var1="wpset" var2="9"/>
+				<placement x="0" y="0" w="%screen_width%" h="%screen_height%"/>
+			</fill>
 
 			<fill color="#00000030">
 				<condition var1="tw_simulate_actions" var2="0"/>

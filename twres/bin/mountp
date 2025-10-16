@@ -15,7 +15,7 @@ PARTITIONS=(
     "internal" "data" "/data" ""
     "external" "external_sd" "/external_sd" "(not tested)"
     "usb otg" "usb-otg" "/usb-otg" "(not tested)"
-    "system" "system" "/system_root" "(uses /system_root)"
+    "system" "system" "/system_root" "(path in /system_root)"
     "system ext" "system_ext" "/system_ext" "(not tested)"
     "vendor" "vendor" "/vendor" ""
     "product" "product" "/product" ""

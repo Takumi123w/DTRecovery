@@ -42,6 +42,9 @@ case "$fs_type" in
         mke2fs -t ext4 -F "$target_block"
         ;;
     f2fs)
+		twrp unmount /vendor
+		sleep 2
+		twrp mount vendor
 		printf "CHECKING...\n"
 		if grep -q "encryption" /vendor/etc/fstab.* && grep -q "data" /vendor/etc/fstab.*; then
 		printf "Encryption found in Fstab"
@@ -51,6 +54,8 @@ case "$fs_type" in
 		make_f2fs -f "$target_block"
 		fi
         fsck.f2fs "$target_block"
+        sleep 2
+        twrp unmount vendor
         ;;
     vfat)
         mkfs.fat -F 32 "$target_block"

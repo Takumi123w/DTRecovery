@@ -189,6 +189,14 @@
 		<page name="main2">
 			<template name="page"/>
 			
+			<action>
+			<condition var1="lockdbt1" var2="0"/>
+				<actions>
+					<action function="setbrightness">5</action>
+					<action function="page">main4</action>
+				</actions>
+			</action>
+			
 			<image>
 				<image resource="splashteamwin"/>
 				<placement x="82" y="30"/>
@@ -266,14 +274,26 @@
 		</actions>
 			</button>
 			
-			<action>
-				<touch key="power+volup"/>
-				<action function="screenshot"/>
-			</action>
-
+			<button style="main_button">
+				<placement x="%indent%" y="%row18a_y%"/>
+				<text>Options</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/options"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row18a_y%"/>
+				<text>Lockscreen</text>
+				<action function="set">lockdbt1=0</action>
+		<action function="setbrightness">5</action>
+		<action function="page">main4</action>
+			</button>
+			
 			<action>
 				<touch key="volup"/>
-				<action function="page">usbmenu</action>
+				<action function="page">aodlock</action>
 			</action>
 			
 			<action>
@@ -285,6 +305,48 @@
 				<touch key="power"/>
 		<action function="editfile">bash "/twres/bin/file_manager"</action>
 		<action function="page">terminalcommand</action>
+            </action>
+		</page>
+		
+		<page name="main4">
+			<template name="page"/>
+			
+			<fill color="#000000">
+				<placement x="0" y="0" w="%screen_width%" h="%screen_height%"/>
+			</fill>
+			
+			<action>
+			<condition var1="lockdbt1" var2="1"/>
+				<actions>
+					<action function="setbrightness">100</action>
+					<action function="set">tw_hide_kb=1</action>
+					<action function="page">main2</action>
+				</actions>
+			</action>
+			
+			<image>
+				<image resource="splashteamwin"/>
+				<placement x="82" y="30"/>
+			</image>
+
+			<text style="text_m">
+				<condition var1="tw_no_cpu_temp" var2="0"/>
+				<placement x="%col1_x_header%" y="%row4_header_y%"/>
+				<text>By TakuruKagami</text>
+			</text>
+			
+			<text style="text_m">
+				<condition var1="tw_no_cpu_temp" var2="0"/>
+				<placement x="%col1_x_header%" y="%row4_header_y1%"/>
+				<text>Press power to wake</text>
+			</text>
+			
+			<action>
+				<touch key="power"/>
+				<action function="editfile">bash "/data/set_twrp.sh"</action>
+				<action function="set">lockdbt1=1</action>
+				<action function="page">terminalcommand</action>
+				<action function="page">main2</action>
             </action>
 		</page>
 		
@@ -360,6 +422,23 @@
 				<actions>
 		<action function="page">mtpsued</action>
 		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%indent%" y="%row18a_y%"/>
+				<text>Options</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/options"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row18a_y%"/>
+				<text>Lockscreen</text>
+				<action function="set">lockdbt1=0</action>
+		<action function="setbrightness">5</action>
+		<action function="page">main4</action>
 			</button>
 			
 			<text color="%text_color%">
@@ -465,6 +544,23 @@
 		</actions>
 			</button>
 			
+			<button style="main_button">
+				<placement x="%indent%" y="%row18a_y%"/>
+				<text>Options</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/options"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row18a_y%"/>
+				<text>Lockscreen</text>
+				<action function="set">lockdbt1=0</action>
+		<action function="setbrightness">5</action>
+		<action function="page">main4</action>
+			</button>
+
 			<action>
 				<touch key="volup"/>
 				<action function="page">wpmenu</action>
@@ -566,6 +662,23 @@
 		</actions>
 			</button>
 			
+			<button style="main_button">
+				<placement x="%indent%" y="%row18a_y%"/>
+				<text>Options</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/options"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row18a_y%"/>
+				<text>Lockscreen</text>
+				<action function="set">lockdbt1=0</action>
+		<action function="setbrightness">5</action>
+		<action function="page">main4</action>
+			</button>
+			
 			<action>
 				<touch key="volup"/>
 				<action function="page">mtpmenu</action>
@@ -659,6 +772,23 @@
 				<actions>
 		<action function="page">mtpsued</action>
 		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%indent%" y="%row18a_y%"/>
+				<text>Options</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/options"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row18a_y%"/>
+				<text>Lockscreen</text>
+				<action function="set">lockdbt1=0</action>
+		<action function="setbrightness">5</action>
+		<action function="page">main4</action>
 			</button>
 			
 			<text color="%text_color%">
@@ -768,9 +898,261 @@
 				<text>USB</text>
 			</text>
 			
+			<button style="main_button">
+				<placement x="%indent%" y="%row18a_y%"/>
+				<text>Options</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/options"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row18a_y%"/>
+				<text>Lockscreen</text>
+				<action function="set">lockdbt1=0</action>
+		<action function="setbrightness">5</action>
+		<action function="page">main4</action>
+			</button>
+			
 			<action>
 				<touch key="volup"/>
 				<action function="page">rbmenu</action>
+			</action>
+			
+			<action>
+				<touch key="voldown"/>
+				<action function="page">optiset</action>
+			</action>
+			
+			<action>
+				<touch key="power"/>
+				<actions>
+		<action function="page">mtpsued</action>
+		</actions>
+            </action>
+		</page>
+		
+# OPTIONS
+
+		<page name="optiset">
+			<template name="page"/>
+			
+			<image>
+				<image resource="splashteamwin"/>
+				<placement x="82" y="30"/>
+			</image>
+
+			<text style="text_m">
+				<condition var1="tw_no_cpu_temp" var2="0"/>
+				<placement x="%col1_x_header%" y="%row4_header_y%"/>
+				<text>By TakuruKagami</text>
+			</text>
+			
+			<text style="text_m">
+				<condition var1="tw_no_cpu_temp" var2="0"/>
+				<placement x="%col1_x_header%" y="%row4_header_y1%"/>
+				<text>Based version: %tw_version%</text>
+			</text>
+
+			<button style="main_button">
+				<placement x="%indent%" y="%row2a_y%"/>
+				<text>Install</text>
+		<actions>
+		<action function="editfile">bash "/twres/bin/file_manager"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+
+			<button style="main_button">
+				<placement x="%center_x%" y="%row2a_y%"/>
+				<text>Format Drive</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/wipe"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%indent%" y="%row8_y%"/>
+				<text>Mount</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/mountp"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%indent%" y="%row13a_y%"/>
+				<text>Reboot</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/reboot"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row8_y%"/>
+				<text>Backup</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/backup"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row13a_y%"/>
+				<text>USB</text>
+				<actions>
+		<action function="page">mtpsued</action>
+		</actions>
+			</button>
+			
+			<button>
+				<image resource="main_button2"/>
+				<placement x="%indent%" y="%row18a_y%"/>
+				<text>Options</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/options"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<text color="%text_color%">
+				<font resource="font_m"/>
+				<placement x="%indent%" y="%row18a_y%"/>
+				<text>Options</text>
+			</text>
+			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row18a_y%"/>
+				<text>Lockscreen</text>
+				<action function="set">lockdbt1=0</action>
+		<action function="setbrightness">5</action>
+		<action function="page">main4</action>
+			</button>
+			
+			<action>
+				<touch key="volup"/>
+				<action function="page">usbmenu</action>
+			</action>
+			
+			<action>
+				<touch key="voldown"/>
+				<action function="page">aodlock</action>
+			</action>
+			
+			<action>
+				<touch key="power"/>
+				<actions>
+		<action function="editfile">bash "/twres/bin/options"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+            </action>
+		</page>
+		
+		<page name="aodlock">
+			<template name="page"/>
+			
+			<image>
+				<image resource="splashteamwin"/>
+				<placement x="82" y="30"/>
+			</image>
+
+			<text style="text_m">
+				<condition var1="tw_no_cpu_temp" var2="0"/>
+				<placement x="%col1_x_header%" y="%row4_header_y%"/>
+				<text>By TakuruKagami</text>
+			</text>
+			
+			<text style="text_m">
+				<condition var1="tw_no_cpu_temp" var2="0"/>
+				<placement x="%col1_x_header%" y="%row4_header_y1%"/>
+				<text>Based version: %tw_version%</text>
+			</text>
+
+			<button style="main_button">
+				<placement x="%indent%" y="%row2a_y%"/>
+				<text>Install</text>
+		<actions>
+		<action function="editfile">bash "/twres/bin/file_manager"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+
+			<button style="main_button">
+				<placement x="%center_x%" y="%row2a_y%"/>
+				<text>Format Drive</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/wipe"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%indent%" y="%row8_y%"/>
+				<text>Mount</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/mountp"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%indent%" y="%row13a_y%"/>
+				<text>Reboot</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/reboot"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row8_y%"/>
+				<text>Backup</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/backup"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%center_x%" y="%row13a_y%"/>
+				<text>USB</text>
+				<actions>
+		<action function="page">mtpsued</action>
+		</actions>
+			</button>
+			
+			<button style="main_button">
+				<placement x="%indent%" y="%row18a_y%"/>
+				<text>Options</text>
+				<actions>
+		<action function="editfile">bash "/twres/bin/options"</action>
+		<action function="page">terminalcommand</action>
+		</actions>
+			</button>
+			
+			<button>
+				<image resource="main_button2"/>
+				<placement x="%center_x%" y="%row18a_y%"/>
+				<text>Lockscreen</text>
+				<actions>
+		<action function="set">lockdbt1=0</action>
+		<action function="setbrightness">5</action>
+		<action function="page">main4</action>
+		</actions>
+			</button>
+			
+			<text color="%text_color%">
+				<font resource="font_m"/>
+				<placement x="%center_x%" y="%row18a_y%"/>
+				<text>Lockscreen</text>
+			</text>
+			
+			<action>
+				<touch key="volup"/>
+				<action function="page">optiset</action>
 			</action>
 			
 			<action>
@@ -781,7 +1163,9 @@
 			<action>
 				<touch key="power"/>
 				<actions>
-		<action function="page">mtpsued</action>
+				<action function="set">lockdbt1=0</action>
+				<action function="setbrightness">5</action>
+				<action function="page">main4</action>
 		</actions>
             </action>
 		</page>
@@ -6165,6 +6549,19 @@
 			<template name="keyboardtemplate"/>
 			
 			<fill color="%headerxdx_color%">
+				<condition var1="wpset" var2="0" />
+				<condition var1="tw_hide_kb" op="=" var2="1" />
+				<placement x="0" y="420" w="%screen_width%" h="350"/>
+			</fill>
+			
+			<fill color="#360012CC">
+				<condition var1="wpset" var2="1" />
+				<condition var1="tw_hide_kb" op="=" var2="1" />
+				<placement x="0" y="420" w="%screen_width%" h="350"/>
+			</fill>
+			
+			<fill color="#808080CC">
+				<condition var1="wpset" var2="3" />
 				<condition var1="tw_hide_kb" op="=" var2="1" />
 				<placement x="0" y="420" w="%screen_width%" h="350"/>
 			</fill>
@@ -6368,8 +6765,8 @@
 				<actions>
 					<action function="editfile">q</action>
 					<action function="page">terminalcommand</action>
-					<action function="set">tw_hide_kb=0</action>
-					<action function="page">main</action>
+					<action function="set">tw_hide_kb=1</action>
+					<action function="page">main2</action>
 					<action function="changeterminal"/>
 				</actions>
 			</action>
@@ -6379,16 +6776,11 @@
 				<actions>
 					<action function="editfile">q</action>
 					<action function="page">terminalcommand</action>
-					<action function="set">tw_hide_kb=0</action>
+					<action function="set">tw_hide_kb=1</action>
 					<action function="page">main2</action>
 					<action function="changeterminal"/>
 				</actions>
 			</action>
-			
-			<action>
-				<touch key="power+volup"/>
-				<action function="screenshot"/>
-            </action>
 
 			<action>
 				<touch key="voldown"/>
@@ -6418,6 +6810,7 @@
 				<touch key="power+voldown"/>
 				<actions>
 					<action function="editfile">q</action>
+					<action function="set">tw_hide_kb=1</action>
 					<action function="page">terminalcommand</action>
 					<action function="page">main2</action>
 				</actions>
