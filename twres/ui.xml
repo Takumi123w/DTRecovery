@@ -17,6 +17,7 @@
 		<font name="font_l" filename="RobotoCondensed-Regular.ttf" size="24"/>
 		<font name="font_m" filename="RobotoCondensed-Regular.ttf" size="18"/>
 		<font name="font_s" filename="RobotoCondensed-Regular.ttf" size="14"/>
+		<font name="font_sp" filename="RobotoCondensed-Regular.ttf" size="8"/>
 		<font name="fixed" filename="DroidSansMono.ttf" size="12"/>
 
 		<font name="keylabel" filename="RobotoCondensed-Regular.ttf" size="30"/>
@@ -73,7 +74,8 @@
 		<image name="kb_arrow_right" filename="kb_arrow_right" retainaspect="1"/>
 		<image name="kb_arrow_up" filename="kb_arrow_up" retainaspect="1"/>
 		<image name="kb_arrow_down" filename="kb_arrow_down" retainaspect="1"/>
-		<image name="naitoumaia" filename="naitoumaia" retainaspect="1"/>
+		<image name="disabler" filename="disabler" retainaspect="1"/>
+		<image name="fingerprint" filename="fingerprint" retainaspect="1"/>
 	</resources>
 
 	<variables>
@@ -82,6 +84,7 @@
 		<variable name="tw_hide_kb" value="1"/>
 		<variable name="screen_width" value="480"/>
 		<variable name="screen_height" value="800"/>
+		<variable name="fulld_terminal" value="640"/>
 		<variable name="status_height" value="30"/>
 		<variable name="header_height" value="110"/>
 		<variable name="navbar_height" value="52"/>
@@ -239,8 +242,8 @@
 		<variable name="tw_cpu_pos_x" value="0"/>
 		<variable name="tw_battery_pos_x" value="0"/>
 		<variable name="wpset" value="0" persist="1"/>
-		<variable name="accent_color" value="#0047ABCC"/>
-		<variable name="headerxdx_color" value="#0047ABCC"/>
+		<variable name="accent_color" value="#1A1A1A"/>
+		<variable name="headerxdx_color" value="#1A1A1A"/>
 		<variable name="accent_color_semitransparent" value="#DC354530"/>
 		<variable name="lockdbt1" value="0"/>
 	</variables>
@@ -306,7 +309,7 @@
 	
 			<image>
 				<condition var1="wpset" var2="2"/>
-				<image resource="naitoumaia"/>
+				<image resource="disabler"/>
 				<placement x="%center_x%" y="407" placement="4"/>
 			</image>
 

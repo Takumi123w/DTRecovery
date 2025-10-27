@@ -20,6 +20,10 @@
 		<style name="text_s">
 			<font resource="font_s" color="%text_color%"/>
 		</style>
+		
+		<style name="text_sp">
+			<font resource="font_sp" color="%text_color%"/>
+		</style>
 
 		<style name="input">
 			<background color="%background_color%"/>
@@ -76,13 +80,12 @@
 
 		<style name="console">
 			<fastscroll rectcolor="%headerxdx_color%" w="%fastscroll_w%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
-			<color foreground="%text_color%" background="#1A1A1A" scroll="#1A1A1A"/>
+			<color foreground="%text_color%" background="#1A1A1A00" scroll="#1A1A1A"/>
 			<font resource="fixed"/>
 		</style>
 
 		<style name="terminal">
-			<fastscroll rectcolor="%headerxdx_color%" w="%fastscroll_w%" rectw="%fastscroll_rectw%" recth="%fastscroll_recth%"/>
-			<background color="#1A1A1A"/>
+			<background color="#1A1A1A99"/>
 			<font resource="fixed" spacing="3" color="%text_color%"/>
 		</style>
 
@@ -197,100 +200,6 @@
 				</actions>
 			</action>
 			
-			<image>
-				<image resource="splashteamwin"/>
-				<placement x="82" y="30"/>
-			</image>
-
-			<text style="text_m">
-				<condition var1="tw_no_cpu_temp" var2="0"/>
-				<placement x="%col1_x_header%" y="%row4_header_y%"/>
-				<text>By TakuruKagami</text>
-			</text>
-			
-			<text style="text_m">
-				<condition var1="tw_no_cpu_temp" var2="0"/>
-				<placement x="%col1_x_header%" y="%row4_header_y1%"/>
-				<text>Based version: %tw_version%</text>
-			</text>
-
-			<button>
-				<image resource="main_button2"/>
-				<placement x="%indent%" y="%row2a_y%"/>
-				<text>Install</text>
-		<actions>
-		<action function="editfile">bash "/twres/bin/file_manager"</action>
-		<action function="page">terminalcommand</action>
-		</actions>
-			</button>
-
-			<button style="main_button">
-				<placement x="%center_x%" y="%row2a_y%"/>
-				<text>Format Drive</text>
-				<actions>
-		<action function="editfile">bash "/twres/bin/wipe"</action>
-		<action function="page">terminalcommand</action>
-		</actions>
-			</button>
-			
-			<button style="main_button">
-				<placement x="%indent%" y="%row13a_y%"/>
-				<text>Reboot</text>
-				<actions>
-		<action function="editfile">bash "/twres/bin/reboot"</action>
-		<action function="page">terminalcommand</action>
-		</actions>
-			</button>
-			
-			<button style="main_button">
-				<placement x="%center_x%" y="%row8_y%"/>
-				<text>Backup</text>
-				<actions>
-		<action function="editfile">bash "/twres/bin/backup"</action>
-		<action function="page">terminalcommand</action>
-		</actions>
-			</button>
-			
-			<button style="main_button">
-				<placement x="%indent%" y="%row8_y%"/>
-				<text>Mount</text>
-				<actions>
-		<action function="editfile">bash "/twres/bin/mountp"</action>
-		<action function="page">terminalcommand</action>
-		</actions>
-			</button>
-			
-			<text color="%text_color%">
-				<font resource="font_m"/>
-				<placement x="%indent%" y="%row2a_y%"/>
-				<text>Install</text>
-			</text>
-			
-			<button style="main_button">
-				<placement x="%center_x%" y="%row13a_y%"/>
-				<text>USB</text>
-				<actions>
-		<action function="page">mtpsued</action>
-		</actions>
-			</button>
-			
-			<button style="main_button">
-				<placement x="%indent%" y="%row18a_y%"/>
-				<text>Options</text>
-				<actions>
-		<action function="editfile">bash "/twres/bin/options"</action>
-		<action function="page">terminalcommand</action>
-		</actions>
-			</button>
-			
-			<button style="main_button">
-				<placement x="%center_x%" y="%row18a_y%"/>
-				<text>Lockscreen</text>
-				<action function="set">lockdbt1=0</action>
-		<action function="setbrightness">5</action>
-		<action function="page">main4</action>
-			</button>
-			
 			<action>
 				<touch key="volup"/>
 				<action function="page">aodlock</action>
@@ -320,7 +229,7 @@
 				<actions>
 					<action function="setbrightness">100</action>
 					<action function="set">tw_hide_kb=1</action>
-					<action function="page">main2</action>
+					<action function="page">terminalcommand</action>
 				</actions>
 			</action>
 			
@@ -328,6 +237,8 @@
 				<image resource="splashteamwin"/>
 				<placement x="82" y="30"/>
 			</image>
+			
+
 
 			<text style="text_m">
 				<condition var1="tw_no_cpu_temp" var2="0"/>
@@ -345,8 +256,8 @@
 				<touch key="power"/>
 				<action function="editfile">bash "/data/set_twrp.sh"</action>
 				<action function="set">lockdbt1=1</action>
+				<action function="editfile">bash /twres/bin/main</action>
 				<action function="page">terminalcommand</action>
-				<action function="page">main2</action>
             </action>
 		</page>
 		
@@ -2422,6 +2333,14 @@
 					<action function="%tw_action2%">%tw_action2_param%</action>
 				</actions>
 			</action>
+			
+			<action>
+				<touch key="power+voldown"/>
+				<actions>
+					<action function="set">tw_back=main2</action>
+					<action function="page">reboot_system_routine</action>
+				</actions>
+            </action>
 		</page>
 
 		<page name="singleaction_page">
@@ -2462,6 +2381,13 @@
 					<action function="%tw_action2%">%tw_action2_param%</action>
 				</actions>
 			</action>
+			<action>
+				<touch key="power+voldown"/>
+				<actions>
+					<action function="set">tw_back=main2</action>
+					<action function="page">reboot_system_routine</action>
+				</actions>
+            </action>
 		</page>
 
 		<page name="action_complete">
@@ -6529,244 +6455,65 @@
 
 		<page name="terminalcommand">
 			<template name="page"/>
-
-			<fill color="%background_color%">
-				<placement x="0" y="%row2_header_y%" w="%screen_width%" h="%slideout_bg_height%"/>
+			
+			<fill color="#1A1A1A">
+				<placement x="0" y="%row2_header_y%" w="%screen_width%" h="%screen_height%"/>
 			</fill>
+			
+			<image>
+				<image resource="splashlogo"/>
+				<placement x="%center_x%" y="407" placement="4"/>
+			</image>
 
 			<terminal>
 				<condition var1="tw_hide_kb" var2="0"/>
-				<placement x="0" y="60" w="%screen_width%" h="%console_terminal_height%"/>
+				<placement x="0" y="60" w="%screen_width%" h="%fulld_terminal%"/>
 			</terminal>
 
 			<terminal>
 				<condition var1="tw_hide_kb" var2="1"/>
-				<placement x="0" y="60" w="%screen_width%" h="%console_terminal_height%"/>
+				<placement x="0" y="60" w="%screen_width%" h="%fulld_terminal%"/>
 			</terminal>
-
-			<template name="keyboardterminaltemplate"/>
-
-			<template name="keyboardtemplate"/>
 			
-			<fill color="%headerxdx_color%">
-				<condition var1="wpset" var2="0" />
-				<condition var1="tw_hide_kb" op="=" var2="1" />
-				<placement x="0" y="420" w="%screen_width%" h="350"/>
-			</fill>
+			<console>
+				<condition var1="tw_hide_kb" var2="1"/>
+				<placement x="%indent%" y="400" w="%screen_width%" h="150"/>
+			</console>
 			
-			<fill color="#360012CC">
-				<condition var1="wpset" var2="1" />
-				<condition var1="tw_hide_kb" op="=" var2="1" />
-				<placement x="0" y="420" w="%screen_width%" h="350"/>
-			</fill>
+			<console>
+				<condition var1="tw_hide_kb" var2="0"/>
+				<placement x="%indent%" y="698" w="%screen_width%" h="50"/>
+			</console>
 			
-			<fill color="#808080CC">
-				<condition var1="wpset" var2="3" />
-				<condition var1="tw_hide_kb" op="=" var2="1" />
-				<placement x="0" y="420" w="%screen_width%" h="350"/>
-			</fill>
-
-			<fill color="#000000">
-				<placement x="0" y="%navbar_y%" w="%screen_width%" h="%navbar_height%" />
-			</fill>
-
-			<button>
-				<condition var1="tw_samsung_navbar" op="!=" var2="1" />
-				<placement x="%back_button_x%" y="%navbar_btn_y%" placement="4" />
-				<image resource="back" />
-				<condition var1="tw_busy" var2="0" />
-				<actions>
-					<action function="set">tw_hide_kb=0</action>
-					<action function="key">back</action>
-				</actions>
-			</button>
-
-			<button>
-				<condition var1="tw_samsung_navbar" op="=" var2="1" />
-				<condition var1="tw_hide_kb" op="=" var2="0" />
-				<placement x="%back_button_x%" y="%navbar_btn_y%" placement="4" />
-				<image resource="kb_hide" />
-				<condition var1="tw_busy" var2="0" />
-				<actions>
-					<action function="set">tw_hide_kb=1</action>
-					<action function="page">terminalcommand</action>
-				</actions>
-			</button>
-
-			<button>
-				<condition var1="tw_samsung_navbar" op="=" var2="1" />
-				<condition var1="tw_hide_kb" op="=" var2="1" />
-				<placement x="%back_button_x%" y="%navbar_btn_y%" placement="4" />
-				<image resource="kb_show" />
-				<condition var1="tw_busy" var2="0" />
-				<actions>
-					<action function="set">tw_hide_kb=0</action>
-					<action function="page">terminalcommand</action>
-				</actions>
-			</button>
-
-			<button>
-				<placement x="%center_x%" y="%navbar_btn_y%" placement="4" />
-				<image resource="home" />
-				<condition var1="tw_busy" var2="0" />
-				<actions>
-					<action function="set">tw_hide_kb=0</action>
-					<action function="key">home</action>
-					<action function="changeterminal"/>
-				</actions>
-			</button>
-
-			<button>
-				<condition var1="tw_samsung_navbar" op="!=" var2="1" />
-				<condition var1="tw_hide_kb" op="=" var2="0" />
-				<placement x="%console_button_x%" y="%navbar_btn_y%" placement="4" />
-				<image resource="kb_hide" />
-				<condition var1="tw_busy" var2="0" />
-				<actions>
-					<action function="set">tw_hide_kb=1</action>
-					<action function="page">terminalcommand</action>
-				</actions>
-			</button>
-
-			<button>
-				<condition var1="tw_samsung_navbar" op="!=" var2="1" />
-				<condition var1="tw_hide_kb" op="=" var2="1" />
-				<placement x="%console_button_x%" y="%navbar_btn_y%" placement="4" />
-				<image resource="kb_show" />
-				<condition var1="tw_busy" var2="0" />
-				<actions>
-					<action function="set">tw_hide_kb=0</action>
-					<action function="page">terminalcommand</action>
-				</actions>
-			</button>
-
-			<button>
-				<condition var1="tw_samsung_navbar" op="=" var2="1" />
-				<placement x="%console_button_x%" y="%navbar_btn_y%" placement="4" />
-				<image resource="back" />
-				<condition var1="tw_busy" var2="0" />
-				<actions>
-					<action function="set">tw_hide_kb=0</action>
-					<action function="key">back</action>
-					<action function="changeterminal"/>
-				</actions>
-			</button>
-			
-			<button>
-				<condition var1="tw_hide_kb" op="=" var2="1" />
-				<placement x="405" y="550" w="76" h="76" placement="4"/>
-				<image resource="buttonxd"/>
-				<condition var1="tw_busy" var2="0"/>
-				<actions>
-					<action function="editfile">d</action>
-					<action function="page">terminalcommand</action>
-				</actions>
-			</button>
-			
-			<button>
-				<condition var1="tw_hide_kb" op="=" var2="1" />
-				<placement x="50" y="550" w="76" h="76" placement="4"/>
-				<image resource="buttonxd"/>
-				<condition var1="tw_busy" var2="0"/>
-				<actions>
-					<action function="editfile">a</action>
-					<action function="page">terminalcommand</action>
-				</actions>
-			</button>
-			
-			<button>
-				<condition var1="tw_hide_kb" op="=" var2="1" />
-				<placement x="230" y="450" w="76" h="76" placement="4"/>
-				<image resource="buttonxd"/>
-				<condition var1="tw_busy" var2="0"/>
-				<actions>
-					<action function="editfile">k</action>
-					<action function="page">terminalcommand</action>
-				</actions>
-			</button>
-			
-			<button>
-				<condition var1="tw_hide_kb" op="=" var2="1" />
-				<placement x="230" y="650" w="76" h="76" placement="4"/>
-				<image resource="buttonxd"/>
-				<condition var1="tw_busy" var2="0"/>
-				<actions>
-					<action function="editfile">j</action>
-					<action function="page">terminalcommand</action>
-				</actions>
-			</button>
-			
-			<button>
-				<condition var1="tw_hide_kb" op="=" var2="1" />
-				<placement x="230" y="545" w="76" h="76" placement="4"/>
-				<image resource="buttonxd"/>
-				<condition var1="tw_busy" var2="0"/>
-				<actions>
-					<action function="editfile">l</action>
-					<action function="page">terminalcommand</action>
-				</actions>
-			</button>
-			
-			<button>
-				<condition var1="tw_hide_kb" op="=" var2="1" />
-				<placement x="435" y="450" placement="4"/>
-				<image resource="buttonxd"/>
-				<condition var1="tw_busy" var2="0"/>
-				<actions>
-					<action function="editfile">x</action>
-					<action function="page">terminalcommand</action>
-				</actions>
-			</button>
-			
-			<text color="%text_color%">
-				<condition var1="tw_hide_kb" op="=" var2="1" />
-				<font resource="font_m"/>
-				<placement x="435" y="450" placement="4"/>
-				<text>X</text>
+			<text style="text_s">
+				<placement x="0" y="750"/>
+				<text>Theme by TakuruKagami</text>
 			</text>
 			
-			<text color="%text_color%">
-				<condition var1="tw_hide_kb" op="=" var2="1" />
-				<font resource="font_m"/>
-				<placement x="405" y="550" placement="4"/>
-				<text>D</text>
+			<text style="text_s">
+				<placement x="0" y="760"/>
+				<text>Based version: %tw_version%</text>
 			</text>
 			
-			<text color="%text_color%">
-				<condition var1="tw_hide_kb" op="=" var2="1" />
-				<font resource="font_m"/>
-				<placement x="50" y="550" placement="4"/>
-				<text>A</text>
-			</text>
-			
-			<text color="%text_color%">
-				<condition var1="tw_hide_kb" op="=" var2="1" />
-				<font resource="font_m"/>
-				<placement x="230" y="450" placement="4"/>
-				<text>Up</text>
-			</text>
-			
-			<text color="%text_color%">
-				<condition var1="tw_hide_kb" op="=" var2="1" />
-				<font resource="font_m"/>
-				<placement x="230" y="650" placement="4"/>
-				<text>Down</text>
-			</text>
+			<image>
+				<image resource="splashteamwin"/>
+				<placement x="82" y="30"/>
+			</image>
 			
 			<button>
-				<placement x="%screen_button_x%" y="%navbar_btn_y%" placement="4"/>
-				<image resource="screencap"/>
-				<condition var1="tw_busy" var2="0"/>
-				<action function="screenshot"/>
+				<image resource="disabler"/>
+				<placement x="%center_x%" y="407" placement="4"/>
+				<text>Backup</text>
+				<actions>
+				<action function="page">terminalcommand</action>
+				</actions>
 			</button>
 
 			<action>
 				<touch key="home"/>
 				<actions>
-					<action function="editfile">q</action>
+					<action function="editfile">bash /twres/bin/main</action>
 					<action function="page">terminalcommand</action>
-					<action function="set">tw_hide_kb=1</action>
-					<action function="page">main2</action>
 					<action function="changeterminal"/>
 				</actions>
 			</action>
@@ -6774,10 +6521,8 @@
 			<action>
 				<touch key="back"/>
 				<actions>
-					<action function="editfile">q</action>
+					<action function="editfile">bash /twres/bin/main</action>
 					<action function="page">terminalcommand</action>
-					<action function="set">tw_hide_kb=1</action>
-					<action function="page">main2</action>
 					<action function="changeterminal"/>
 				</actions>
 			</action>
@@ -6807,14 +6552,9 @@
             </action>
             
             <action>
-				<touch key="power+voldown"/>
-				<actions>
-					<action function="editfile">q</action>
-					<action function="set">tw_hide_kb=1</action>
-					<action function="page">terminalcommand</action>
-					<action function="page">main2</action>
-				</actions>
-            </action>
+				<touch key="power+volup"/>
+				<action function="screenshot"/>
+			</action>
 		</page>
 
 		<page name="sideload">
