@@ -5,17 +5,6 @@ readonly VIEW_HEIGHT=$((terminal_height - 6))
 stty_orig="$(stty -g)"
 trap 'stty "$stty_orig"; printf "\033c"' EXIT INT TERM
 
-readonly FORMAT_TARGETS=(
-    "/dev/block/by-name/userdata"
-    "/dev/block/by-name/cache"
-    "/dev/block/by-name/sdcard"
-    "/dev/block/by-name/data"
-    "/dev/block/mapper/userdata"
-    "/dev/block/mapper/data"
-    "/dev/block/by-name/system"
-    "/dev/block/by-name/vendor"
-)
-
 check_fbe_support() {
     grep -q "fileencryption=" "/vendor/etc/fstab.mt6739" 2>/dev/null
     return $?
@@ -85,6 +74,7 @@ format_fs_menu() {
     local _selected_index=0
     
     local _fs_options=(
+		"Cancel format" "back"
         "Format as ext4" "ext4"
         "Format as f2fs" "f2fs"
         "Format as vfat" "vfat"
@@ -135,7 +125,9 @@ format_fs_menu() {
                 ;;
             l | $'\r' | $'\n')
                 local fs_id="${_fs_options[_selected_index*2 + 1]}"
-                
+                if [[ "$fs_id" == "back" ]]; then
+                return 0
+                fi
                 stty -echo -icanon
                 execute_format "$target_block" "$fs_id"
                 return 0
@@ -153,19 +145,22 @@ handle_format_menu() {
     local _available_targets=()
     local target_count=0
 
-    for target in "${FORMAT_TARGETS[@]}"; do
+    while IFS= read -r target; do
         if [[ -e "$target" ]]; then
             _available_targets+=("$target")
         fi
-    done
+    done <<< $(awk '{print $3,$4}' /etc/twrp.flags | grep /dev | grep -E 'wipe|flash' | sed 's/#//g' | sed '/^$/d' | awk '{print $1}')
 
     target_count="${#_available_targets[@]}"
+
+    local _menu_options=("Back to main menu" "${_available_targets[@]}")
+    local total_count="${#_menu_options[@]}"
     
     if [ "$target_count" -eq 0 ]; then
         printf "\033c"
         printf "NO FORMAT TARGETS FOUND\n"
         printf "No existing, formattable partitions were found.\n"
-        printf "\nPress any key to exit\n"
+        printf "\nPress any key to return to Main Menu...\n"
         stty -echo -icanon
         read -n 1 wait_key
         stty "$stty_orig"
@@ -176,10 +171,10 @@ handle_format_menu() {
         printf "\033c"
         printf "_FORMAT PARTITION MENU\n"
         printf "=========================================================\n"
-        printf "Select partition to WIPE:\n"
+        printf "Select partition to format:\n"
 
-        for i in "${!_available_targets[@]}"; do
-            target="${_available_targets[i]}"
+        for i in "${!_menu_options[@]}"; do
+            target="${_menu_options[i]}"
             if [[ "$i" -eq "$_selected_index" ]]; then
                 printf "> %s\n" "$target"
             else
@@ -187,7 +182,7 @@ handle_format_menu() {
             fi
         done
         
-        local lines_printed="${#_available_targets[@]}"
+        local lines_printed="${#_menu_options[@]}"
         for (( j = lines_printed; j < VIEW_HEIGHT; j++ )); do
             echo
         done
@@ -201,7 +196,7 @@ handle_format_menu() {
 
         case "$menu_key" in
             j)
-                if [ "$_selected_index" -lt "$((target_count - 1))" ]; then
+                if [ "$_selected_index" -lt "$((total_count - 1))" ]; then
                     _selected_index=$((_selected_index + 1))
                 fi
                 ;;
@@ -211,13 +206,17 @@ handle_format_menu() {
                 fi
                 ;;
             l | $'\r' | $'\n')
-                local selected_target="${_available_targets[_selected_index]}"
+                if [ "$_selected_index" -eq 0 ]; then
+                    printf "\033c"
+                    bash /twres/bin/main
+                fi
+                local selected_target="${_available_targets[_selected_index - 1]}"
                 format_fs_menu "$selected_target"
                 ;;
-        q)
-			break
-            exit
-            ;;
+            q)
+                break
+                exit
+                ;;
         esac
     done
 }

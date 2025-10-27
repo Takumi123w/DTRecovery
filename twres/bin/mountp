@@ -22,7 +22,7 @@ PARTITIONS=(
     "odm" "odm" "/odm" ""
 )
 
-REBOOT_MENU_OPTIONS=()
+REBOOT_MENU_OPTIONS+=( "Back to main menu" "/twres/bin/main" )
 
 for (( i=0; i < ${#PARTITIONS[@]}; i+=4 )); do
     NAME="${PARTITIONS[i]}"
