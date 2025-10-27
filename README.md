@@ -31,10 +31,6 @@ TWRP theme for phone dont have touch driver
 
 If menu error not execute do
 chmod +x /path/to/AIK/ramdisk/twres/bin/*
-
-<img width="140" alt="start" src="https://github.com/user-attachments/assets/168356c0-fdc2-4e76-8b22-6e03f35b8ad8" /><img width="140" alt="usb" src="https://github.com/user-attachments/assets/06ee6536-b36c-45b0-8e4b-b07badb547fb" /><img width="140" alt="mount" src="https://github.com/user-attachments/assets/0f054305-4267-42cb-ae6c-c6c9afa46118" />
-
-
 <img width="140" alt="Screenshot_2025-10-27-13-39-21" src="https://github.com/user-attachments/assets/2087ada2-2912-4053-8896-8b7d5cf7065f" />
 <img width="140" alt="Screenshot_2025-10-27-13-37-22" src="https://github.com/user-attachments/assets/d0ec2480-5ab9-4df9-9a47-ac31fbeeaaae" />
 <img width="140" alt="Screenshot_2025-10-27-13-40-42" src="https://github.com/user-attachments/assets/6742d7bd-8d89-424d-a904-8d261c7bedf9" />
