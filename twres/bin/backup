@@ -6,14 +6,41 @@ stty_orig="$(stty -g)"
 trap 'stty "$stty_orig"; printf "\033c"' EXIT INT TERM
 
 readonly PARTITION_MENU_OPTIONS=(
+	"Back to main menu" "bash /twres/bin/main"
     "Backup Data" "twrp backup D NDATA"
     "Backup System" "twrp backup S NSYSTEM"
     "Backup Boot" "twrp backup B NBOOT"
     "Restore Data" "twrp restore D NDATA"
     "Restore System" "twrp restore S NSYSTEM"
     "Restore Boot" "twrp restore B NBOOT"
+    "Ramoops logs" "ramoopsbckp"
+    "Last ksmg logs" "last_ksmg_log"
+    "Current dmesg logs" "last_dmesg_log"
 )
 readonly OPTION_COUNT=$(( ${#PARTITION_MENU_OPTIONS[@]} / 2 ))
+
+ramoopsbckp() {
+cat "/sys/fs/pstore/console-ramoops" > /data/console-ramoops.txt
+printf "Backup in /data/console-ramoops.txt"
+read -n 1 wait_key
+/twres/bin/readtxt /data/console-ramoops.txt
+}
+
+last_ksmg_log() {
+cat /proc/last_kmsg > /data/last_kernel_reason.txt
+printf "Backup in /data/last_kernel_reason.txt"
+read -n 1 wait_key
+/twres/bin/readtxt /data/last_kernel_reason.txt
+}
+
+last_dmesg_log() {
+dmesg > /data/current_dmesg_twrp.txt
+printf "Backup in /data/current_dmesg_twrp.txt"
+read -n 1 wait_key
+/twres/bin/readtxt /data/current_dmesg_twrp.txt
+}
+
+#adb shell dmesg > current_dmesg_twrp.txt
 
 main_reboot_menu() {
     
