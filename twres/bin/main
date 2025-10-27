@@ -1,0 +1,134 @@
+#!/bin/bash
+terminal_height=$(stty size | cut -d ' ' -f 1)
+readonly VIEW_HEIGHT=$((terminal_height - 6))
+
+stty_orig="$(stty -g)"
+trap 'stty "$stty_orig"; printf "\033c"' EXIT INT TERM
+
+readonly REBOOT_MENU_OPTIONS=(
+    "Install" "bash /twres/bin/file_manager"
+    "Format Data" "bash /twres/bin/wipe"
+    "Format Factory" "format_factory"
+    "Backup" "bash /twres/bin/backup"
+    "Mount" "bash /twres/bin/mountp"
+    "USB Mode" "bash /twres/bin/usbmd"
+    "Reboot" "bash /twres/bin/reboot"
+)
+readonly OPTION_COUNT=$(( ${#REBOOT_MENU_OPTIONS[@]} / 2 ))
+
+format_factory () {
+    echo "================================================="
+    echo "!!! WARNING: FORMAT FACTORY (Keep Media) !!!"
+    echo "This will delete all apps, settings, and caches."
+    echo "Your photos, music, and files in /data/media will be still safe."
+    echo "-------------------------------------------------"
+    echo "Press [Vol+] to continue / [Vol-] to cancel."
+    
+    local stty_orig="$(stty -g)"
+    
+    while true; do
+        stty -echo -icanon
+        read -n 1 menu_key
+        stty "$stty_orig"
+        
+        case "$menu_key" in
+            k)
+                echo -e "\n--- CONFIRMED: Starting Wipe ---\n"
+                break
+                ;;
+            z)
+                echo -e "\n--- CANCELED: Returning to Menu ---\n"
+                sleep 2
+                return 0
+                ;;
+            *)
+                stty -echo -icanon 
+                ;;
+        esac
+    done
+
+    # --- Deletion Logic ---
+    while IFS= read -r line
+    do
+        if [ "$line" = "media" ]
+        then
+            echo "Skipping user internal file: /data/$line"
+        else
+            echo "Deleting: /data/$line"
+            rm -rf /data/$line
+        fi
+    done <<< $(ls -1 /data)
+
+    echo "Selective Factory Reset Complete."
+    sleep 2
+}
+
+main_reboot_menu() {
+    twrp set tw_hide_kb 1
+    local selected_index=0
+    
+    while true; do
+        printf "\033c"
+        printf "_MAIN MENU\n"
+        printf "=================================\n"
+        printf "Select action to perform:\n"
+
+        for ((i=0; i < OPTION_COUNT; i++)); do
+            local display_name="${REBOOT_MENU_OPTIONS[i*2]}"
+            if [[ "$i" -eq "$selected_index" ]]; then
+                printf "> \033[7m%s\033[0m\n" "$display_name"
+            else
+                printf "  %s\n" "$display_name"
+            fi
+        done
+        
+        local lines_printed="$OPTION_COUNT"
+        for (( j = lines_printed; j < VIEW_HEIGHT; j++ )); do
+            echo
+        done
+
+        printf "=================================\n"
+        printf "[vol+] Up | [vol-] Down | [power] Select | [power+vol-] Quit\n"
+
+        stty -echo -icanon
+        read -n 1 menu_key
+        stty "$stty_orig"
+
+        case "$menu_key" in
+            j)
+                if [ "$selected_index" -lt "$((OPTION_COUNT - 1))" ]; then
+                    selected_index=$((selected_index + 1))
+                fi
+                ;;
+            k)
+                if [ "$selected_index" -gt 0 ]; then
+                    selected_index=$((selected_index - 1))
+                fi
+                ;;
+            l | $'\r' | $'\n')
+                local command="${REBOOT_MENU_OPTIONS[selected_index*2 + 1]}"
+                
+                printf "\033c"
+                
+                if [ "$command" = "exit" ]; then
+                    echo "Exiting menu."
+                    exit 0
+                fi
+                
+                echo "Executing: $command"
+                twrp set tw_hide_kb 0
+                $command
+                
+                echo "Command returned without system change. Waiting 2 seconds..."
+                sleep 2
+                ;;
+            q)
+                break
+                ;;
+        esac
+    done
+}
+
+main_reboot_menu
+
+exit 0

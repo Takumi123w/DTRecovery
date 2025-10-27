@@ -1,0 +1,121 @@
+#!/bin/bash
+
+terminal_height=$(stty size | cut -d ' ' -f 1)
+readonly VIEW_HEIGHT=$((terminal_height - 6))
+
+stty_orig="$(stty -g)"
+trap 'stty "$stty_orig"; printf "\033c"' EXIT INT TERM
+
+is_mounted() {
+    grep -q " $1 " /proc/mounts
+    return $?
+}
+
+PARTITIONS=(
+    "internal" "data" "/data" ""
+    "external" "external_sd" "/external_sd" "(not tested)"
+    "usb otg" "usb-otg" "/usb-otg" "(not tested)"
+    "system" "system" "/system_root" "(path in /system_root)"
+    "system ext" "system_ext" "/system_ext" "(not tested)"
+    "vendor" "vendor" "/vendor" ""
+    "product" "product" "/product" ""
+    "odm" "odm" "/odm" ""
+)
+
+REBOOT_MENU_OPTIONS+=( "Back to main menu" "/twres/bin/main" )
+
+for (( i=0; i < ${#PARTITIONS[@]}; i+=4 )); do
+    NAME="${PARTITIONS[i]}"
+    TWRP_NAME="${PARTITIONS[i+1]}"
+    MOUNT_POINT="${PARTITIONS[i+2]}"
+    NOTE="${PARTITIONS[i+3]}"
+
+    if is_mounted "$MOUNT_POINT"; then
+        DISPLAY_TEXT="Unmount $NAME $NOTE"
+        COMMAND="twrp unmount $TWRP_NAME"
+        REBOOT_MENU_OPTIONS+=( "$DISPLAY_TEXT" "$COMMAND" )
+    else
+        DISPLAY_TEXT="Mount $NAME $NOTE"
+        COMMAND="twrp mount $TWRP_NAME"
+        REBOOT_MENU_OPTIONS+=( "$DISPLAY_TEXT" "$COMMAND" )
+    fi
+done
+
+readonly REBOOT_MENU_OPTIONS
+readonly OPTION_COUNT=$(( ${#REBOOT_MENU_OPTIONS[@]} / 2 ))
+
+main_reboot_menu() {
+    
+    local selected_index=0
+    
+    while true; do
+        printf "\033c"
+        printf "_MOUNT MENU\n"
+        printf "=================================\n"
+        printf "Select action to perform:\n"
+
+        for ((i=0; i < OPTION_COUNT; i++)); do
+            local display_name="${REBOOT_MENU_OPTIONS[i*2]}"
+            if [[ "$i" -eq "$selected_index" ]]; then
+                printf "> \033[7m%s\033[0m\n" "$display_name"
+            else
+                printf "  %s\n" "$display_name"
+            fi
+        done
+        
+        local lines_printed="$OPTION_COUNT"
+        for (( j = lines_printed; j < VIEW_HEIGHT; j++ )); do
+            echo
+        done
+
+        printf "=================================\n"
+        printf "[vol+] Up | [vol-] Down | [power] Flash | [power+vol-] Quit\n" 
+
+        stty -echo -icanon
+        read -n 1 menu_key
+        stty "$stty_orig"
+
+        case "$menu_key" in
+            j)
+                if [ "$selected_index" -lt "$((OPTION_COUNT - 1))" ]; then
+                    selected_index=$((selected_index + 1))
+                fi
+                ;;
+            k)
+                if [ "$selected_index" -gt 0 ]; then
+                    selected_index=$((selected_index - 1))
+                fi
+                ;;
+            l | $'\r' | $'\n')
+                local command="${REBOOT_MENU_OPTIONS[selected_index*2 + 1]}"
+                
+                printf "\033c"
+                
+                if [ "$command" = "exit" ]; then
+                    echo "Exiting menu."
+                    exit 0
+                fi
+                
+                echo "Executing: $command"
+                
+                $command
+                
+                if [[ "$command" == twrp\ mount* || "$command" == twrp\ unmount* ]]; then
+                    echo "Mount/Unmount performed. Restarting menu to refresh status..."
+                    sleep 1 
+                    exec "$0" 
+                fi
+
+                echo "Press any key to return to the menu..."
+                read -n 1 wait_key
+                ;;
+            q)
+                break
+                ;;
+        esac
+    done
+}
+
+main_reboot_menu
+
+exit 0
