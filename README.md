@@ -27,7 +27,6 @@ TWRP theme for phone dont have touch driver
 | Button | | |
 | :---- | :----: | ----: |
 | Vol up = key up | Vol down = key down | Power = enter/ok |
-| Vol down + Power = exit |
 
 If menu error not execute do
 chmod +x /path/to/AIK/ramdisk/twres/bin/*
