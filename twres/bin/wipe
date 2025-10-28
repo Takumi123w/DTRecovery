@@ -208,7 +208,8 @@ handle_format_menu() {
             l | $'\r' | $'\n')
                 if [ "$_selected_index" -eq 0 ]; then
                     printf "\033c"
-                    bash /twres/bin/main
+                    twrp set backmenu 1
+                    exit
                 fi
                 local selected_target="${_available_targets[_selected_index - 1]}"
                 format_fs_menu "$selected_target"

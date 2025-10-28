@@ -17,15 +17,64 @@
 		<font name="font_l" filename="RobotoCondensed-Regular.ttf" size="24"/>
 		<font name="font_m" filename="RobotoCondensed-Regular.ttf" size="18"/>
 		<font name="font_s" filename="RobotoCondensed-Regular.ttf" size="14"/>
-		<font name="font_sp" filename="RobotoCondensed-Regular.ttf" size="8"/>
 		<font name="fixed" filename="DroidSansMono.ttf" size="12"/>
 
 		<font name="keylabel" filename="RobotoCondensed-Regular.ttf" size="30"/>
 		<font name="keylabel-small" filename="RobotoCondensed-Regular.ttf" size="20"/>
 		<font name="keylabel-longpress" filename="RobotoCondensed-Regular.ttf" size="14"/>
+
+		<image name="buttonxd" filename="buttonxd" retainaspect="1"/>
+		<image name="logo" filename="logo" retainaspect="1"/>
 		<image name="splashteamwin" filename="splashteamwin" retainaspect="1"/>
+		<image name="main_button" filename="main_button"/>
+		<image name="main_button2" filename="main_button2"/>
+		<image name="main_button_half_height" filename="main_button_half_height"/>
+		<image name="main_button_half_height_full_width" filename="main_button_half_height_full_width"/>
+		<image name="fab_selectfolder" filename="fab_selectfolder" retainaspect="1"/>
+		<image name="tab_3" filename="tab_3"/>
+		<image name="tab_4" filename="tab_4"/>
+		<image name="file" filename="file" retainaspect="1"/>
+		<image name="folder" filename="folder" retainaspect="1"/>
+		<image name="unlock_icon" filename="unlock_icon" retainaspect="1"/>
 		<image name="splashlogo" filename="splashlogo" retainaspect="1"/>
-		<image name="disabler" filename="disabler" retainaspect="1"/>
+		<image name="home" filename="home" retainaspect="1"/>
+		<image name="back" filename="back" retainaspect="1"/>
+		<image name="console" filename="console" retainaspect="1"/>
+		<image name="kb_hide" filename="kb_hide" retainaspect="1"/>
+		<image name="kb_show" filename="kb_show" retainaspect="1"/>
+		<image name="checkbox_false" filename="checkbox_false" retainaspect="1"/>
+		<image name="checkbox_true" filename="checkbox_true" retainaspect="1"/>
+		<image name="radio_false" filename="radio_false" retainaspect="1"/>
+		<image name="radio_true" filename="radio_true" retainaspect="1"/>
+		<image name="sort_asc" filename="sort_asc"/>
+		<image name="background" filename="background" retainaspect="1"/>
+		<image name="sort_desc" filename="sort_desc"/>
+		<image name="sort_empty" filename="sort_empty"/>
+		<animation name="progress" filename="indeterminate"/>
+		<image name="progress_empty" filename="progress_empty"/>
+		<image name="progress_full" filename="progress_fill"/>
+		<image name="slider" filename="slider"/>
+		<image name="slider_used" filename="slider_used"/>
+		<image name="slider_touch" filename="slider_touch"/>
+		<image name="handle" filename="handle"/>
+		<image name="cursor" filename="cursor" retainaspect="1"/>
+		<image name="tab_general" filename="tab_general" retainaspect="1"/>
+		<image name="tab_timezone" filename="tab_timezone" retainaspect="1"/>
+		<image name="tab_display" filename="tab_display" retainaspect="1"/>
+		<image name="tab_vibration" filename="tab_vibration" retainaspect="1"/>
+		<image name="tab_language" filename="tab_language" retainaspect="1"/>
+
+		<image name="backspace" filename="backspace" retainaspect="1"/>
+		<image name="enter" filename="enter" retainaspect="1"/>
+		<image name="shift" filename="shift" retainaspect="1"/>
+		<image name="shift_fill" filename="shift_fill" retainaspect="1"/>
+		<image name="space" filename="space" retainaspect="1"/>
+		<image name="kb_arrow_left" filename="kb_arrow_left" retainaspect="1"/>
+		<image name="kb_arrow_right" filename="kb_arrow_right" retainaspect="1"/>
+		<image name="kb_arrow_up" filename="kb_arrow_up" retainaspect="1"/>
+		<image name="kb_arrow_down" filename="kb_arrow_down" retainaspect="1"/>
+		<image name="naitoumaia" filename="naitoumaia" retainaspect="1"/>
+		<image name="fingerprint" filename="fingerprint" retainaspect="1"/>
 	</resources>
 
 	<variables>
@@ -34,7 +83,6 @@
 		<variable name="tw_hide_kb" value="1"/>
 		<variable name="screen_width" value="480"/>
 		<variable name="screen_height" value="800"/>
-		<variable name="fulld_terminal" value="640"/>
 		<variable name="status_height" value="30"/>
 		<variable name="header_height" value="110"/>
 		<variable name="navbar_height" value="52"/>
@@ -159,7 +207,7 @@
 		<variable name="fileselector_filemanager_height" value="559"/>
 		<variable name="partitionlist_spacing" value="0"/>
 		<variable name="partitionlist_storage_height" value="221"/>
-		<variable name="partitionlist_flashimage0_height" value="221"/>
+		<variable name="partitionlist_flashimage_height" value="221"/>
 		<variable name="partitionlist_wipe_height" value="442"/>
 		<variable name="partitionlist_mount_height" value="338"/>
 		<variable name="partitionlist_backup_height" value="312"/>
@@ -192,10 +240,11 @@
 		<variable name="tw_cpu_pos_x" value="0"/>
 		<variable name="tw_battery_pos_x" value="0"/>
 		<variable name="wpset" value="0" persist="1"/>
-		<variable name="accent_color" value="#1A1A1A"/>
-		<variable name="headerxdx_color" value="#1A1A1A"/>
+		<variable name="accent_color" value="#0047ABCC"/>
+		<variable name="headerxdx_color" value="#0047ABCC"/>
 		<variable name="accent_color_semitransparent" value="#DC354530"/>
 		<variable name="lockdbt1" value="0"/>
+		<variable name="backmenu" value="0"/>
 	</variables>
 
 	<mousecursor>
@@ -213,19 +262,19 @@
 				<placement x="0" y="0" w="%screen_width%" h="%header_height%"/>
 			</fill>
 
-			<image0>
+			<image>
 				<condition var1="tw_busy" var2="1"/>
-				<image0 resource="logo"/>
+				<image resource="logo"/>
 				<placement x="0" y="0"/>
-			</image0>
+			</image>
 
 # default wallpaper		
 
-			<image0>
+			<image>
 				<condition var1="wpset" var2="0"/>
-				<image0 resource="background"/>
+				<image resource="background"/>
 				<placement x="%center_x%" y="407" placement="4"/>
-			</image0>
+			</image>
 			
 # wallpaper 2nd
 			
@@ -239,11 +288,11 @@
 				<placement x="0" y="0" w="%screen_width%" h="%header_height%"/>
 			</fill>
 
-			<image0>
+			<image>
 				<condition var1="wpset" var2="1"/>
-				<image0 resource="splashlogo"/>
+				<image resource="splashlogo"/>
 				<placement x="%center_x%" y="407" placement="4"/>
-			</image0>
+			</image>
 
 # wallpaper 3nd
 
@@ -257,26 +306,26 @@
 				<placement x="0" y="0" w="%screen_width%" h="%header_height%"/>
 			</fill>
 	
-			<image0>
+			<image>
 				<condition var1="wpset" var2="2"/>
-				<image0 resource="disabler"/>
+				<image resource="naitoumaia"/>
 				<placement x="%center_x%" y="407" placement="4"/>
-			</image0>
+			</image>
 
 # wallpaper 4nd
 
-			<image0>
+			<image>
 				<condition var1="wpset" var2="3"/>
-				<image0 resource="background"/>
+				<image resource="background"/>
 				<placement x="%center_x%" y="407" placement="4"/>
-			</image0>
+			</image>
 
 # wallpaper 5nd
 
 			<button>
 				<condition var1="tw_busy" var2="0"/>
 				<placement x="0" y="0"/>
-				<image0 resource="logo"/>
+				<image resource="logo"/>
 				<action function="key">home</action>
 			</button>
 			
@@ -361,7 +410,7 @@
 			<button>
 				<condition var1="tw_samsung_navbar" op="!=" var2="1"/>
 				<placement x="%back_button_x%" y="%navbar_btn_y%" placement="4"/>
-				<image0 resource="back"/>
+				<image resource="back"/>
 				<condition var1="tw_busy" var2="0"/>
 				<action function="key">back</action>
 			</button>
@@ -369,14 +418,14 @@
 			<button>
 				<condition var1="tw_samsung_navbar" op="=" var2="1"/>
 				<placement x="%back_button_x%" y="%navbar_btn_y%" placement="4"/>
-				<image0 resource="console"/>
+				<image resource="console"/>
 				<condition var1="tw_busy" var2="0"/>
 				<action function="overlay">slideout</action>
 			</button>
 
 			<button>
 				<placement x="%center_x%" y="%navbar_btn_y%" placement="4"/>
-				<image0 resource="home"/>
+				<image resource="home"/>
 				<condition var1="tw_busy" var2="0"/>
 				<action function="key">home</action>
 			</button>
@@ -384,7 +433,7 @@
 			<button>
 				<condition var1="tw_samsung_navbar" op="!=" var2="1"/>
 				<placement x="%console_button_x%" y="%navbar_btn_y%" placement="4"/>
-				<image0 resource="console"/>
+				<image resource="console"/>
 				<condition var1="tw_busy" var2="0"/>
 				<action function="overlay">slideout</action>
 			</button>
@@ -392,7 +441,7 @@
 			<button>
 				<condition var1="tw_samsung_navbar" op="=" var2="1"/>
 				<placement x="%console_button_x%" y="%navbar_btn_y%" placement="4"/>
-				<image0 resource="back"/>
+				<image resource="back"/>
 				<condition var1="tw_busy" var2="0"/>
 				<action function="key">back</action>
 			</button>
@@ -419,20 +468,20 @@
 		</template>
 
 		<template name="sort_options">
-			<image0>
+			<image>
 				<placement x="%indent%" y="%row1a_y%"/>
-				<image0 resource="tab_3"/>
-			</image0>
+				<image resource="tab_3"/>
+			</image>
 
-			<image0>
+			<image>
 				<placement x="%btn3_col2_x%" y="%row1a_y%"/>
-				<image0 resource="tab_3"/>
-			</image0>
+				<image resource="tab_3"/>
+			</image>
 
-			<image0>
+			<image>
 				<placement x="%btn3_col3_x%" y="%row1a_y%"/>
-				<image0 resource="tab_3"/>
-			</image0>
+				<image resource="tab_3"/>
+			</image>
 
 			<button>
 				<highlight color="%highlight_color%"/>
@@ -440,7 +489,7 @@
 				<placement x="%indent%" y="%row1a_y%"/>
 				<font resource="font_s" color="%text_button_color%"/>
 				<text>{@sort_by_name_only=Name}</text>
-				<image0 resource="sort_asc"/>
+				<image resource="sort_asc"/>
 				<action function="set">tw_gui_sort_order=-1</action>
 			</button>
 
@@ -450,7 +499,7 @@
 				<placement x="%indent%" y="%row1a_y%"/>
 				<font resource="font_s" color="%text_button_color%"/>
 				<text>{@sort_by_name_only=Name}</text>
-				<image0 resource="sort_desc"/>
+				<image resource="sort_desc"/>
 				<action function="set">tw_gui_sort_order=1</action>
 			</button>
 
@@ -463,7 +512,7 @@
 				<placement x="%indent%" y="%row1a_y%"/>
 				<font resource="font_s" color="%text_button_color%"/>
 				<text>{@sort_by_name_only=Name}</text>
-				<image0 resource="sort_empty"/>
+				<image resource="sort_empty"/>
 				<action function="set">tw_gui_sort_order=1</action>
 			</button>
 
@@ -473,7 +522,7 @@
 				<placement x="%btn3_col2_x%" y="%row1a_y%"/>
 				<font resource="font_s" color="%text_button_color%"/>
 				<text>{@sort_by_date_only=Date}</text>
-				<image0 resource="sort_asc"/>
+				<image resource="sort_asc"/>
 				<action function="set">tw_gui_sort_order=-2</action>
 			</button>
 
@@ -483,7 +532,7 @@
 				<placement x="%btn3_col2_x%" y="%row1a_y%"/>
 				<font resource="font_s" color="%text_button_color%"/>
 				<text>{@sort_by_date_only=Date}</text>
-				<image0 resource="sort_desc"/>
+				<image resource="sort_desc"/>
 				<action function="set">tw_gui_sort_order=2</action>
 			</button>
 
@@ -496,7 +545,7 @@
 				<placement x="%btn3_col2_x%" y="%row1a_y%"/>
 				<font resource="font_s" color="%text_button_color%"/>
 				<text>{@sort_by_date_only=Date}</text>
-				<image0 resource="sort_empty"/>
+				<image resource="sort_empty"/>
 				<action function="set">tw_gui_sort_order=2</action>
 			</button>
 
@@ -506,7 +555,7 @@
 				<placement x="%btn3_col3_x%" y="%row1a_y%"/>
 				<font resource="font_s" color="%text_button_color%"/>
 				<text>{@sort_by_size_only=Size}</text>
-				<image0 resource="sort_asc"/>
+				<image resource="sort_asc"/>
 				<action function="set">tw_gui_sort_order=-3</action>
 			</button>
 
@@ -516,7 +565,7 @@
 				<placement x="%btn3_col3_x%" y="%row1a_y%"/>
 				<font resource="font_s" color="%text_button_color%"/>
 				<text>{@sort_by_size_only=Size}</text>
-				<image0 resource="sort_desc"/>
+				<image resource="sort_desc"/>
 				<action function="set">tw_gui_sort_order=3</action>
 			</button>
 
@@ -529,7 +578,7 @@
 				<placement x="%btn3_col3_x%" y="%row1a_y%"/>
 				<font resource="font_s" color="%text_button_color%"/>
 				<text>{@sort_by_size_only=Size}</text>
-				<image0 resource="sort_empty"/>
+				<image resource="sort_empty"/>
 				<action function="set">tw_gui_sort_order=3</action>
 			</button>
 		</template>
@@ -559,31 +608,31 @@
 
 			<button style="tab">
 				<placement x="%tab5_centered_col1_x%" y="%tab_y%" placement="4"/>
-				<image0 resource="tab_general"/>
+				<image resource="tab_general"/>
 				<action function="page">settings</action>
 			</button>
 
 			<button style="tab">
 				<placement x="%tab5_centered_col2_x%" y="%tab_y%" placement="4"/>
-				<image0 resource="tab_timezone"/>
+				<image resource="tab_timezone"/>
 				<action function="page">settings_timezone</action>
 			</button>
 
 			<button style="tab">
 				<placement x="%center_x%" y="%tab_y%" placement="4"/>
-				<image0 resource="tab_display"/>
+				<image resource="tab_display"/>
 				<action function="page">settings_screen</action>
 			</button>
 
 			<button style="tab">
 				<placement x="%tab5_centered_col4_x%" y="%tab_y%" placement="4"/>
-				<image0 resource="tab_vibration"/>
+				<image resource="tab_vibration"/>
 				<action function="page">settings_vibration</action>
 			</button>
 
 			<button style="tab">
 				<placement x="%tab5_centered_col5_x%" y="%tab_y%" placement="4"/>
-				<image0 resource="tab_language"/>
+				<image resource="tab_language"/>
 				<action function="page">settings_language</action>
 			</button>
 		</template>

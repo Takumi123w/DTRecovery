@@ -64,11 +64,17 @@ stty_orig="$(stty -g)"
 trap 'stty "$stty_orig" 2>/dev/null; printf "\033c"' EXIT INT TERM
 
 readonly REBOOT_MENU_OPTIONS=(
+	"Back to main menu" "main_command"
     "Change Theme" "theme_command"
     "Reverse Navbar" "navbar_command"
     "12/24 Clock" "clock_command"
 )
 readonly OPTION_COUNT=$(( ${#REBOOT_MENU_OPTIONS[@]} / 2 ))
+
+main_move (){
+twrp set backmenu 1
+exit
+}
 
 theme_command() {
     local apply_wpset="$current_theme_wpset"
@@ -137,6 +143,8 @@ main_reboot_menu() {
     while true; do
         printf "\033c"
         
+        local main_display_name="Back to main menu"
+        
         local apply_theme_display=$((current_theme_wpset + 1))
         local theme_display_name="Set Theme to $apply_theme_display"
         
@@ -159,10 +167,12 @@ main_reboot_menu() {
 
         for ((i=0; i < OPTION_COUNT; i++)); do
             if [[ "$i" -eq 0 ]]; then
-                display_name="$theme_display_name"
+                display_name="$main_display_name"
             elif [[ "$i" -eq 1 ]]; then
-                display_name="$navbar_display_name"
+                display_name="$theme_display_name"
             elif [[ "$i" -eq 2 ]]; then
+                display_name="$navbar_display_name"
+            elif [[ "$i" -eq 3 ]]; then
                 display_name="$clock_display_name"
             else
                 display_name="${REBOOT_MENU_OPTIONS[i*2]}"
@@ -212,6 +222,9 @@ main_reboot_menu() {
                 case "$command" in
                     "theme_command")
                         theme_command
+						;;
+					"main_command")
+						main_move
                         ;;
                     "navbar_command")
                         navbar_command

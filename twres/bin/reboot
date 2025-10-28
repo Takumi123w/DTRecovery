@@ -6,7 +6,7 @@ stty_orig="$(stty -g)"
 trap 'stty "$stty_orig"; printf "\033c"' EXIT INT TERM
 
 readonly REBOOT_MENU_OPTIONS=(
-	"Back to main menu" "bash /twres/bin/main"
+	"Back to main menu" "main_move"
     "Reboot System" "reboot system"
     "Reboot to Recovery" "reboot recovery"
     "Reboot to Bootloader" "reboot bootloader"
@@ -14,6 +14,11 @@ readonly REBOOT_MENU_OPTIONS=(
     "Power Off" "reboot -p"
 )
 readonly OPTION_COUNT=$(( ${#REBOOT_MENU_OPTIONS[@]} / 2 ))
+
+main_move (){
+twrp set backmenu 1
+exit
+}
 
 main_reboot_menu() {
     

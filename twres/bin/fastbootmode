@@ -1,0 +1,60 @@
+#!/bin/bash
+terminal_height=$(stty size | cut -d ' ' -f 1)
+readonly VIEW_HEIGHT=$((terminal_height - 6))
+    local stty_orig="$(stty -g)"
+    trap 'stty "$stty_orig"; printf "\033c"; return 0' INT TERM
+    echo "--- Fastboot Mode Activation ---"
+    
+	setprop sys.usb.config none
+
+	UDC_CONTROLLER="$(getprop sys.usb.controller)"
+	if [ -z "$UDC_CONTROLLER" ]; then
+		echo "UDC CONTROLLER not found skip this"
+	fi
+
+	echo "Set paramenter for fastboot..."
+	echo "0xD001" > /config/usb_gadget/g1/idProduct
+	echo "fastboot" > /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration
+
+	rm -f /config/usb_gadget/g1/configs/b.1/f1
+	rm -f /config/usb_gadget/g1/configs/b.1/ffs.mtp
+
+	ln -s /config/usb_gadget/g1/functions/ffs.fastboot /config/usb_gadget/g1/configs/b.1/f1
+
+	echo "This UDC CONTROLLER : $UDC_CONTROLLER"
+
+	#echo "$UDC_CONTROLLER" > /config/usb_gadget/g1/UDC
+
+	setprop sys.usb.config fastboot
+	start fastbootd
+
+
+    echo "-----------------------------------"
+    echo "**FastbootD Mode.**"
+    echo "==================================="
+    echo "**Press [power] or [power+vol-] to exit Fastboot Mode.**"
+    
+    while true; do
+        stty -echo -icanon
+        read -n 1 menu_key
+        stty "$stty_orig"
+        case "$menu_key" in
+            l | $'\r' | $'\n' | q) break ;;
+            *) stty -echo -icanon ;;
+        esac
+    done
+    
+    setprop sys.usb.config none
+
+    clear
+    echo "Exiting Fastboot Mode. Cleaning up USB..."
+    
+    echo "none" > /config/usb_gadget/g1/UDC 2>/dev/null
+    stop fastbootd
+    
+    setprop sys.usb.config "adb"
+    start adbd
+    
+    stty "$stty_orig"
+twrp set backmenu 1
+exit

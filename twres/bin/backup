@@ -6,7 +6,7 @@ stty_orig="$(stty -g)"
 trap 'stty "$stty_orig"; printf "\033c"' EXIT INT TERM
 
 readonly PARTITION_MENU_OPTIONS=(
-	"Back to main menu" "bash /twres/bin/main"
+	"Back to main menu" "main_move"
     "Backup Data" "twrp backup D NDATA"
     "Backup System" "twrp backup S NSYSTEM"
     "Backup Boot" "twrp backup B NBOOT"
@@ -18,6 +18,11 @@ readonly PARTITION_MENU_OPTIONS=(
     "Current dmesg logs" "last_dmesg_log"
 )
 readonly OPTION_COUNT=$(( ${#PARTITION_MENU_OPTIONS[@]} / 2 ))
+
+main_move (){
+twrp set backmenu 1
+exit
+}
 
 ramoopsbckp() {
 cat "/sys/fs/pstore/console-ramoops" > /data/console-ramoops.txt

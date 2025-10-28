@@ -254,7 +254,8 @@ select_start_dir() {
                 if [ "$_start_selected_index" -eq 0 ]; then
                     printf "\033c"
                     echo "Returning to main menu..."
-                    bash /twres/bin/main
+                    twrp set backmenu 1
+                    exit
                 fi
                 local array_index=$((_start_selected_index - 1))
                 local selected_dir="${DEFAULT_START_DIRS[array_index]}"
@@ -347,7 +348,8 @@ run_dir_selector() {
                 local selected_item="${selected_item_raw%/}"
                 
                 if [[ "$selected_item" == "Back to main menu" ]]; then
-                   bash /twres/bin/main
+                   twrp set backmenu 1
+                    exit
                 fi
 
                 if [[ -d "$selected_item" ]]; then
@@ -793,7 +795,8 @@ file_manager_main() {
                 printf "Selected: %s/%s\n" "$(pwd)" "$selected_item_raw"
                 
                 if [[ "$selected_item" == "Back to main menu" ]]; then
-                   bash /twres/bin/main
+                   twrp set backmenu 1
+                    exit
                 fi
 
 				if [[ -d "$selected_item" ]]; then

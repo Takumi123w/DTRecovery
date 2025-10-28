@@ -12,6 +12,7 @@
 		<font name="font_l" filename="RobotoCondensed-Regular.ttf" size="24"/>
 		<image name="splashlogo" filename="splashlogo" retainaspect="1"/>
 		<image name="splashteamwin" filename="splashteamwin" retainaspect="1"/>
+		<image name="background" filename="background" retainaspect="1"/>
 	</resources>
 
 	<variables>
@@ -26,6 +27,11 @@
 	<pages>
 		<page name="splash">
 			<background color="#1A1A1A"/>
+			
+			<image>
+				<image resource="background"/>
+				<placement x="240" y="407" placement="4"/>
+			</image>
 			
 			<fill color="%headerx_color%">
 				<placement x="0" y="200" w="%screen_width%" h="600"/>
